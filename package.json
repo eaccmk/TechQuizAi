@@ -1,0 +1,22 @@
+{
+  "name": "techquizai",
+  "version": "2.0.0",
+  "description": "Scalable, lightweight Markdown-driven Cloud & AI Quiz Platform",
+  "main": "src/app.js",
+  "scripts": {
+    "build": "node scripts/build-quizzes.js",
+    "test": "node test/test.js"
+  },
+  "keywords": [
+    "cloud",
+    "aws",
+    "azure",
+    "gcp",
+    "ai",
+    "quiz",
+    "markdown",
+    "netlify"
+  ],
+  "author": "TechQuizAi",
+  "license": "MIT"
+}
