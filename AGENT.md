@@ -1,80 +1,51 @@
-# AGENT.md — TechQuizAiAi Project
+# AGENT.md — TechQuizAi Project Architecture & Instructions
 
 ## Project Overview
-TechQuizAiAi is an interactive cloud-computing quiz platform (starting with AWS Basics).
+TechQuizAi is a lightweight, scalable, Markdown-driven cloud computing & AI quiz platform.
 Users take swipeable card-based quizzes, earn certificates, and share achievements.
-Frontend is vanilla JavaScript (no framework). Hosted on Netlify. Backend planned: Firebase.
+Hosted as a static web app on Netlify. Zero heavy frameworks.
 
-## Tech Stack
-- HTML/CSS/JS (vanilla, no build step, no framework)
-- Firebase (planned: Auth, Firestore) — not yet integrated
-- Netlify (static hosting + serverless functions)
-- Canvas API for certificate generation (no external libraries)
-
-## File Structure
-
+## Directory Structure
+```
 /
-├── index.html # Dashboard with quiz tiles
-├── style.css # Dashboard styles
-├── app.js # Dashboard logic (rendering tiles, search, theme toggle, cookie consent)
-├── quiz.html # Quiz-taking screen
-├── quiz.css # Quiz screen styles (card stack, confetti, modals)
-├── quiz.js # Quiz logic (questions, swipe, scoring, results)
-├── certificate.js # Shared certificate generator (used by both index.html and quiz.js)
-├── AGENT.md # This file, agent instructions
-├── README.md # Project readme
-├── .gitignore # Git ignore rules
-└── netlify.toml # Netlify deployment config
-
-
-## Key Conventions
-- `certificate.js` must load BEFORE `app.js` and `quiz.js` in their respective HTML files, since both call `generateCertificate()`.
-- Certificate generation happens client-side only (Canvas API), no server round-trip.
-- User name on certificates is stored in `localStorage` under key `techquizai_user_name` (entered via pre-quiz personalization modal, falling back to "Learner").
-- Quiz attempt tracking (max 3 retakes after scoring 0) uses `localStorage`, key pattern: `techquizai_attempts_{quizId}`.
-- Dark mode preference stored in `localStorage` under key `theme`.
-- Cookie consent stored in `localStorage` under key `cookieConsent` (values: `standard` or `rejected`).
-
-## Reusable Project Conventions & Guardrails
-
-### 1. Modal Navigation State Handling
-When closing a modal before initiating a page redirect or navigation, capture target state parameters in a local variable before invoking the modal cleanup function:
-```javascript
-function proceedToQuiz() {
-    const targetQuizId = pendingQuizId;
-    const name = userNameInput.value.trim() || 'Learner';
-    localStorage.setItem('techquizai_user_name', name);
-    closeNameModal(); // Clears pendingQuizId to null
-    if (targetQuizId) {
-        window.location.href = `quiz.html?id=${targetQuizId}`;
-    }
-}
+├── index.html           # Main entry point (horizontal quiz rows by category)
+├── quiz.html            # Interactive quiz player page
+├── 404.html             # 404 Not Found page encouraging quiz searches
+├── disclaimer.html      # Terms of Use, Vendor Disclaimer & Contact Us integration
+├── netlify.toml         # Netlify build configuration
+├── package.json         # Build and test script definitions
+├── AGENT.md             # Core developer & agent instructions
+├── SKILLS.md            # Working guidelines & testing checklist
+├── scripts/
+│   └── build-quizzes.js # Compiles quizzes/ into src/quizzes.json & src/quizzes-data.js
+├── test/
+│   └── test.js          # Automated test runner (npm test)
+├── src/
+│   ├── config.js        # Central branding, site URLs, storage keys, colors
+│   ├── app.js           # Dashboard rendering, search bar, clear button, modal logic
+│   ├── quiz.js          # Quiz engine, SHA-256 answer verification, option shuffling
+│   ├── certificate.js   # Canvas certificate generator
+│   ├── style.css        # Dashboard, header, footer, 404, disclaimer styles
+│   ├── quiz.css         # Card stack, swipe gestures, confetti, results styles
+│   ├── quizzes.json     # Compiled JSON catalog
+│   └── quizzes-data.js  # Compiled window.QUIZ_CATALOG script for offline/local server fallback
+└── quizzes/             # Markdown quiz definition files grouped by subfolder
+    ├── AWS/             # AWS_BASIC.md, IAM_CONCEPTS.md, EC2_COMPUTE.md
+    ├── AI/              # LLM_FUNDAMENTALS.md, MCP_CONCEPTS.md, EVALUATION_EVALS.md
+    ├── AZURE/           # AZURE_FUNDAMENTALS.md, AZURE_DEVOPS.md, AZURE_SECURITY.md
+    └── GCP/             # GCP_FUNDAMENTALS.md, GCP_ARCHITECTURE.md, GCP_DATA_AI.md
 ```
 
-### 2. Netlify Form Integration
-- All Netlify form markup must include `data-netlify="true"` on the `<form>` element and a `<input type="hidden" name="form-name" value="form_name_here" />` field.
-- AJAX submissions must post to `/` using `headers: { 'Content-Type': 'application/x-www-form-urlencoded' }` and `body: new URLSearchParams(formData).toString()`.
+## Key Conventions & Conventions
+1. **Root Entry Point**: `index.html`, `quiz.html`, `404.html`, `disclaimer.html` stay at project root so Netlify automatically deploys without extra path routing.
+2. **Centralized Configuration**: All site branding, app names, copyright text, and site URLs are stored in `src/config.js` (`CONFIG`). Never hardcode site URLs. Private repo URLs are kept hidden from public config.
+3. **Markdown Quiz Parsing**: Quizzes are defined in `quizzes/<CATEGORY>/<NAME>.md` using YAML frontmatter and Markdown questions (`- [x]` for correct option).
+4. **Answer Obfuscation**: Correct options are hashed into SHA-256 (`answerHash`). Plaintext answers or correct indices are never exposed in DOM or console.
+5. **Horizontal Grouping**: Categories render as horizontal full-width row blocks (`repeat(3, 1fr)`) in sequence: AWS Fundamentals, AI Foundations, GCP, Azure Cloud & DevOps.
+6. **Accessibility**: 95%+ WCAG 2.1 AA coverage (`.skip-link`, `:focus-visible`, ARIA landmark roles, Escape key modal trap, screen reader utilities).
 
-### 3. Mobile Viewport & Native Sharing
-- Always use `100dvh` (dynamic viewport height) in CSS for full-bleed mobile views to prevent bottom controls from clipping under mobile browser toolbars.
-- Share buttons should detect mobile screens (`window.innerWidth <= 768` or `navigator.share`) and launch `navigator.share(...)` directly, falling back to the custom share drawer on desktop.
-
-### 4. User Name & Certificate Tracking
-- User names entered in pre-quiz modals are persisted in `localStorage` under key `techquizai_user_name`.
-- Certificate generators in both `app.js` and `quiz.js` must consume `localStorage.getItem('techquizai_user_name') || 'Learner'`.
-
-## Known Placeholders / Not Yet Built
-- User authentication / profiles (full account sync)
-- Firebase backend (progress currently doesn't persist across devices)
-- Multi-tab session locking (planned, not implemented)
-- 404 / 500 / offline custom pages (not yet built)
-- Ads integration (deferred by design)
-- Only AWS Basics quiz has real questions; other tiles are styled as "Coming Soon"
-
-## How to Test Locally
-No build step needed. Open `index.html` directly in a browser, or serve the folder with any static server (e.g., VS Code Live Server extension) to avoid any local file-access quirks with `localStorage`.
-
-## Deployment
-Hosted on Netlify as a static site. See deployment steps below.
-
-
+## Testing & Build Commands
+```bash
+npm run build   # Parses quizzes/ subfolders and generates src/quizzes.json & src/quizzes-data.js
+npm test        # Runs test/test.js validating configuration, markdown schemas, hashing, & paths
+```
