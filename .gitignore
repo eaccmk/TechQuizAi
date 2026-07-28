@@ -3,3 +3,6 @@ node_modules/
 stage/
 *.log
 .env
+.env.local
+.env.*.local
+!.env.example
