@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <title>TechQuizAi - AWS Basics</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="quiz.css">
+</head>
+
+<body>
+    <div class="quiz-focus-bg">
+        <!-- Top bar -->
+        <div class="quiz-topbar">
+            <button class="btn-exit" id="exitBtn">✕</button>
+            <div class="quiz-progress-track">
+                <div class="quiz-progress-fill" id="progressFill"></div>
+            </div>
+            <span class="quiz-counter" id="quizCounter">1/10</span>
+        </div>
+
+        <!-- Card stack -->
+        <div class="card-stack" id="cardStack"></div>
+
+        <!-- Bottom controls -->
+        <div class="quiz-controls">
+            <button class="btn-nav" id="backBtn">← Back</button>
+            <button class="btn-nav btn-next" id="nextBtn">Next →</button>
+            <button class="btn-nav btn-finish hidden" id="finishBtn">Finish Quiz</button>
+        </div>
+    </div>
+
+    <!-- Submit confirmation popup -->
+    <div class="modal-overlay hidden" id="submitModal">
+        <div class="modal-box">
+            <div class="modal-icon">🎯</div>
+            <h3>Ready to submit?</h3>
+            <p>Once submitted, you can't change your answers. Best of luck!</p>
+            <div class="modal-actions">
+                <button class="btn-modal btn-cancel" id="cancelSubmit">Keep Reviewing</button>
+                <button class="btn-modal btn-confirm" id="confirmSubmit">Submit Quiz</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Results screen -->
+    <div class="results-screen hidden" id="resultsScreen"></div>
+
+    <script src="certificate.js"></script>
+    <script src="quiz.js"></script>
+
+</body>
+
+</html>

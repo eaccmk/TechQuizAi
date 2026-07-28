@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechQuizAi - Master Cloud Computing</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-container">
+            <div class="logo">
+                <span class="logo-icon">☁️</span>
+                <span class="logo-text">TechQuizAi</span>
+            </div>
+
+            <div class="search-bar">
+                <input type="text" id="searchInput" placeholder="Search..">
+                <span class="search-icon">🔍</span>
+            </div>
+
+            <div class="header-actions">
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">🌙</button>
+                <button class="btn-signup" id="signUpBtn">Sign Up - Free!</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Master Cloud Computing, One Quiz at a Time</h1>
+        <p>Learn AWS fundamentals through interactive quizzes. No fluff, just concepts that stick.</p>
+    </section>
+
+    <!-- Quiz Grid -->
+    <main class="quiz-container">
+        <div class="section-header">
+            <h2>AWS Fundamentals</h2>
+            <span class="quiz-count">6 quizzes</span>
+        </div>
+
+        <div class="quiz-grid" id="quizGrid">
+            <!-- Quiz cards injected by JS -->
+        </div>
+    </main>
+
+    <!-- Sign Up Modal (Netlify Form Compatible) -->
+    <div class="modal-overlay hidden" id="signupModal">
+        <div class="modal-card">
+            <div class="modal-icon">🚀</div>
+            <h3>Join TechQuizAi Free</h3>
+            <p>Sign-up to get updates about new quizz in your inbox!</p>
+
+            <form name="signup" method="POST" data-netlify="true" id="signupForm">
+                <input type="hidden" name="form-name" value="signup" />
+
+                <div class="form-field">
+                    <label for="signupName">Full Name</label>
+                    <input type="text" id="signupName" name="name" placeholder="e.g. Jane Doe" required
+                        autocomplete="name">
+                </div>
+
+                <div class="form-field">
+                    <label for="signupEmail">Email Address</label>
+                    <input type="email" id="signupEmail" name="email" placeholder="jane@example.com" required
+                        autocomplete="email">
+                </div>
+
+                <!-- <div class="form-field">
+                    <label for="signupRole">Learning Goal</label>
+                    <select id="signupRole" name="role">
+                        <option value="aws-practitioner">AWS Certified Cloud Practitioner</option>
+                        <option value="aws-architect">AWS Solutions Architect</option>
+                        <option value="developer">Cloud Developer / Tech Learner</option>
+                    </select>
+                </div> -->
+
+                <div class="modal-actions">
+                    <button type="button" class="btn-modal btn-cancel" id="cancelSignupBtn">Cancel</button>
+                    <button type="submit" class="btn-modal btn-confirm">Sign Up Free</button>
+                </div>
+            </form>
+
+            <!-- <div class="signup-success hidden" id="signupSuccess">
+                <div class="modal-icon">🎉</div>
+                <h3>Welcome aboard!</h3>
+                <p>Your free account request has been submitted. Get ready to master the cloud!</p>
+                <button type="button" class="btn-modal btn-confirm" id="closeSuccessBtn">Got it!</button>
+            </div> -->
+        </div>
+    </div>
+
+    <!-- Name Input Modal -->
+    <div class="modal-overlay hidden" id="nameModal">
+        <div class="modal-card">
+            <div class="modal-icon">📜</div>
+            <h3>Personalize Your Certificate</h3>
+            <p>Enter your full name as you would like it to appear on your official Certificate of Completion.</p>
+            <div class="input-group">
+                <input type="text" id="userNameInput" placeholder="e.g. Alex Morgan" maxlength="40" autocomplete="name">
+            </div>
+            <div class="modal-actions">
+                <button class="btn-modal btn-cancel" id="cancelNameBtn">Cancel</button>
+                <button class="btn-modal btn-confirm" id="startQuizBtn">Start Quiz →</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cookie Consent Banner -->
+    <div class="cookie-banner" id="cookieBanner">
+        <div class="cookie-content">
+            <p>We use minimal, anonymous cookies to remember your quiz progress. No personal data is stored.</p>
+            <div class="cookie-actions">
+                <button class="btn-cookie btn-reject" id="rejectCookies">Reject All</button>
+                <button class="btn-cookie btn-standard" id="acceptCookies">Accept Standard</button>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p>&copy; 2026 TechQuizAi. Built for learners, by learners.</p>
+    </footer>
+
+    <script src="certificate.js"></script>
+    <script src="app.js"></script>
+</body>
+
+</html>
