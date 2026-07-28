@@ -1,19 +1,22 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-    <title>TechQuizAi - AWS Basics</title>
+    <title>TechQuizAi - Interactive Quiz</title>
+    <link rel="icon" type="image/png" href="assets/favicon.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link rel="stylesheet" href="quiz.css">
+    <link rel="stylesheet" href="src/quiz.css">
+    <script src="src/config.js"></script>
+    <script src="src/quizzes-data.js"></script>
 </head>
 
 <body>
     <div class="quiz-focus-bg">
         <!-- Top bar -->
         <div class="quiz-topbar">
-            <button class="btn-exit" id="exitBtn">✕</button>
+            <button class="btn-exit" id="exitBtn" aria-label="Exit quiz">✕</button>
             <div class="quiz-progress-track">
                 <div class="quiz-progress-fill" id="progressFill"></div>
             </div>
@@ -32,10 +35,10 @@
     </div>
 
     <!-- Submit confirmation popup -->
-    <div class="modal-overlay hidden" id="submitModal">
-        <div class="modal-box">
-            <div class="modal-icon">🎯</div>
-            <h3>Ready to submit?</h3>
+    <div class="modal-overlay hidden" id="submitModal" role="dialog" aria-modal="true" aria-labelledby="submitTitle">
+        <div class="modal-card">
+            <div class="modal-icon" aria-hidden="true">🎯</div>
+            <h3 id="submitTitle">Ready to submit?</h3>
             <p>Once submitted, you can't change your answers. Best of luck!</p>
             <div class="modal-actions">
                 <button class="btn-modal btn-cancel" id="cancelSubmit">Keep Reviewing</button>
@@ -44,12 +47,22 @@
         </div>
     </div>
 
+    <!-- Cookie Consent Banner -->
+    <div class="cookie-banner hidden" id="cookieBanner" role="region" aria-label="Cookie consent" style="display: none;">
+        <div class="cookie-content">
+            <p>We use minimal cookies and Google Analytics to collect anonymous usage metrics. You can Accept or Reject non-essential cookies.</p>
+            <div class="cookie-actions">
+                <button class="btn-cookie btn-reject" id="rejectCookies">Reject All</button>
+                <button class="btn-cookie btn-standard" id="acceptCookies">Accept</button>
+            </div>
+        </div>
+    </div>
+
     <!-- Results screen -->
     <div class="results-screen hidden" id="resultsScreen"></div>
 
-    <script src="certificate.js"></script>
-    <script src="quiz.js"></script>
-
+    <script src="src/certificate.js"></script>
+    <script src="src/quiz.js"></script>
 </body>
 
 </html>

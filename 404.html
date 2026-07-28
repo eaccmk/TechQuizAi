@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page Not Found (404) - TechQuizAi</title>
+    <link rel="icon" type="image/png" href="assets/favicon.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="src/style.css">
+    <script src="src/config.js"></script>
+    <script src="src/quizzes-data.js"></script>
+</head>
+
+<body>
+    <a href="#mainContent" class="skip-link">Skip to main content</a>
+
+    <!-- Header -->
+    <header class="header" role="banner">
+        <div class="header-container">
+            <a href="index.html" class="logo" id="headerLogo" aria-label="TechQuizAi Home">
+                <span class="logo-icon" id="logoIcon" aria-hidden="true">☁️</span>
+                <span class="logo-text" id="logoText">TechQuizAi</span>
+            </a>
+
+            <div class="search-bar" role="search">
+                <input type="text" id="searchInput" placeholder="Search quizzes.." aria-label="Search quizzes by title or category" autocomplete="off">
+                <button class="search-clear hidden" id="searchClearBtn" aria-label="Clear search input">✕</button>
+                <span class="search-icon" aria-hidden="true">🔍</span>
+            </div>
+
+            <div class="header-actions">
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">🌙</button>
+                <button class="btn-signup" id="signUpBtn">Sign Up - Free!</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="quiz-container" id="mainContent" role="main">
+        <section class="special-page-hero">
+            <div class="special-page-icon">🧭</div>
+            <h1 class="special-page-title">404 - Page Lost in the Cloud!</h1>
+            <p class="special-page-body" style="text-align: center;">
+                Looks like this route took a wrong turn. Don't worry, your cloud knowledge journey doesn't stop here!
+                Search for a training above or jump straight into one of our popular cloud quizzes below.
+            </p>
+            <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
+                <a href="index.html" class="btn-primary-action">🏠 Explore Dashboard</a>
+                <a href="quiz.html?id=aws-basics" class="btn-primary-action" style="background: var(--success);">⚡ Start AWS Basics Quiz</a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Cookie Consent Banner -->
+    <div class="cookie-banner hidden" id="cookieBanner" role="region" aria-label="Cookie consent" style="display: none;">
+        <div class="cookie-content">
+            <p>We use minimal cookies and Google Analytics to collect anonymous usage metrics. You can Accept or Reject non-essential cookies.</p>
+            <div class="cookie-actions">
+                <button class="btn-cookie btn-reject" id="rejectCookies">Reject All</button>
+                <button class="btn-cookie btn-standard" id="acceptCookies">Accept</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Standard Footer -->
+    <footer class="footer" role="contentinfo">
+        <div class="footer-container">
+            <div class="footer-nav-links">
+                <a href="https://www.linkedin.com/in/millankaul" target="_blank" rel="noopener" aria-label="LinkedIn profile"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
+                <a href="https://github.com/eaccmk" target="_blank" rel="noopener" aria-label="GitHub profile"><i class="fa-brands fa-github"></i> GitHub</a>
+                <a href="https://qualitywithmillan.github.io/" target="_blank" rel="noopener" aria-label="Learn More Blog"><i class="fa-solid fa-book-open"></i> Learn More</a>
+                <a href="disclaimer.html"><i class="fa-solid fa-scale-balanced"></i> Terms & Disclaimer</a>
+                <button class="btn-footer-link" id="contactUsBtn"><i class="fa-solid fa-envelope"></i> Contact Us</button>
+            </div>
+
+            <p class="footer-copyright" id="footerCopyright">
+                &copy; 2026 <a href="https://techquizai.netlify.app/">TechQuizAi</a>. Built for learners, by learners.
+            </p>
+        </div>
+    </footer>
+
+    <script src="src/certificate.js"></script>
+    <script src="src/app.js"></script>
+</body>
+
+</html>

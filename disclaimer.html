@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TechQuizAi - Master Cloud Computing & AI</title>
+    <title>About, Terms & Disclaimer - TechQuizAi</title>
     <link rel="icon" type="image/png" href="assets/favicon.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="src/style.css">
@@ -13,7 +13,6 @@
 </head>
 
 <body>
-    <!-- Skip link for keyboard accessibility -->
     <a href="#mainContent" class="skip-link">Skip to main content</a>
 
     <!-- Header -->
@@ -37,20 +36,42 @@
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <section class="hero" role="region" aria-label="Introduction">
-        <h1 id="heroTitle">Master Cloud Computing, One Quiz at a Time</h1>
-        <p id="heroSubtitle">Learn Cloud fundamentals, AI, LLM, Agents, Eval, RAG, MCP through interactive quizzes. No fluff, just concepts that stick.</p>
-    </section>
-
-    <!-- Main Quiz Catalog Container -->
+    <!-- Main Content -->
     <main class="quiz-container" id="mainContent" role="main">
-        <div class="quiz-grid" id="quizGrid">
-            <!-- Dynamic Category Horizontal Groups injected by app.js -->
-        </div>
+        <section class="special-page-hero" style="text-align: left; max-width: 900px;">
+            <div class="special-page-icon" style="text-align: center;">📜</div>
+            <h1 class="special-page-title" style="text-align: center;">About TechQuizAi, Terms of Use & Disclaimer</h1>
+
+            <div class="special-page-body">
+                <h3 style="color: var(--text-primary); margin: 20px 0 8px;">1. Purpose & Inspiration</h3>
+                <p style="margin-bottom: 16px;">
+                    TechQuizAi was created for fun to provide developers, cloud architects, and tech enthusiasts with a quick, lightweight, and engaging platform to brush up on Cloud (AWS, Azure, GCP) and AI concepts. It is designed to help you refresh key concepts right before technical discussions, presentations, or job interviews.
+                </p>
+
+                <h3 style="color: var(--text-primary); margin: 20px 0 8px;">2. Independent Disclaimer & Non-Affiliation</h3>
+                <p style="margin-bottom: 16px;">
+                    TechQuizAi is an independent personal project. This website and its contents are <strong>NOT</strong> affiliated with, endorsed by, sponsored by, or associated with Amazon Web Services (AWS), Microsoft Azure, Google Cloud Platform (GCP), or any original vendor certification programs.
+                </p>
+
+                <h3 style="color: var(--text-primary); margin: 20px 0 8px;">3. Limitation of Liability</h3>
+                <p style="margin-bottom: 16px;">
+                    This website and all quiz contents are provided on an "AS IS" and "AS AVAILABLE" basis for educational and entertainment purposes only. The creator assumes no responsibility or liability for any errors, omissions, or outcomes resulting from the use of this website by individuals or companies.
+                </p>
+
+                <h3 style="color: var(--text-primary); margin: 20px 0 8px;">4. Terms of Use</h3>
+                <p style="margin-bottom: 24px;">
+                    By accessing TechQuizAi, you agree to use the site responsibly for personal learning. All quizzes run client-side, and minimal anonymous state is kept in local browser storage.
+                </p>
+            </div>
+
+            <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
+                <a href="index.html" class="btn-primary-action">🏠 Back to Dashboard</a>
+                <button class="btn-primary-action" id="disclaimerContactBtn" style="background: var(--success);">📬 Contact Us</button>
+            </div>
+        </section>
     </main>
 
-    <!-- Sign Up / Contact Modal (Netlify Form Compatible) -->
+    <!-- Sign Up Modal (Netlify Form Compatible) -->
     <div class="modal-overlay hidden" id="signupModal" role="dialog" aria-modal="true" aria-labelledby="signupTitle">
         <div class="modal-card">
             <form name="signup" method="POST" data-netlify="true" netlify-honeypot="bot-field" id="signupForm">
@@ -87,40 +108,23 @@
         </div>
     </div>
 
-    <!-- Name Input Modal -->
-    <div class="modal-overlay hidden" id="nameModal" role="dialog" aria-modal="true" aria-labelledby="nameTitle">
-        <div class="modal-card">
-            <div class="modal-icon" aria-hidden="true">📜</div>
-            <h2 id="nameTitle">Personalize Your Certificate</h2>
-            <p>Enter your full name as you would like it to see on your Certificate of Completion.</p>
-            <div class="input-group">
-                <label for="userNameInput" class="sr-only">Full Name</label>
-                <input type="text" id="userNameInput" placeholder="e.g. Alex Morgan" maxlength="40" autocomplete="name">
-            </div>
-            <div class="modal-actions">
-                <button class="btn-modal btn-cancel" id="cancelNameBtn">Cancel</button>
-                <button class="btn-modal btn-confirm" id="startQuizBtn">Start Quiz →</button>
-            </div>
-        </div>
-    </div>
-
     <!-- Cookie Consent Banner -->
-    <div class="cookie-banner" id="cookieBanner" role="region" aria-label="Cookie consent">
+    <div class="cookie-banner hidden" id="cookieBanner" role="region" aria-label="Cookie consent" style="display: none;">
         <div class="cookie-content">
-            <p>We use minimal cookies and Google Analytics to collect anonymous usage data to improve TechQuizAi. You can Accept or Reject non-essential cookies.</p>
+            <p>We use minimal cookies and Google Analytics to collect anonymous usage metrics. You can Accept or Reject non-essential cookies.</p>
             <div class="cookie-actions">
                 <button class="btn-cookie btn-reject" id="rejectCookies">Reject All</button>
-                <button class="btn-cookie btn-standard" id="acceptCookies">Accept Cookies</button>
+                <button class="btn-cookie btn-standard" id="acceptCookies">Accept</button>
             </div>
         </div>
     </div>
 
-    <!-- Standard Certification Footer -->
+    <!-- Standard Footer -->
     <footer class="footer" role="contentinfo">
         <div class="footer-container">
             <div class="footer-nav-links">
-                <a href="https://www.linkedin.com/in/millankaul" target="_blank" rel="noopener" aria-label="LinkedIn Profile"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
-                <a href="https://github.com/eaccmk" target="_blank" rel="noopener" aria-label="GitHub Profile"><i class="fa-brands fa-github"></i> GitHub</a>
+                <a href="https://www.linkedin.com/in/millankaul" target="_blank" rel="noopener" aria-label="LinkedIn profile"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
+                <a href="https://github.com/eaccmk" target="_blank" rel="noopener" aria-label="GitHub profile"><i class="fa-brands fa-github"></i> GitHub</a>
                 <a href="https://qualitywithmillan.github.io/" target="_blank" rel="noopener" aria-label="Learn More Blog"><i class="fa-solid fa-book-open"></i> Learn More</a>
                 <a href="disclaimer.html"><i class="fa-solid fa-scale-balanced"></i> Terms & Disclaimer</a>
                 <button class="btn-footer-link" id="contactUsBtn"><i class="fa-solid fa-envelope"></i> Contact Us</button>
@@ -129,15 +133,17 @@
             <p class="footer-copyright" id="footerCopyright">
                 &copy; 2026 <a href="https://techquizai.netlify.app/">TechQuizAi</a>. Built for learners, by learners.
             </p>
-
-            <p class="footer-disclaimer-note">
-                TechQuizAi is an independent tool built for fun to help users brush up skills before technical interviews. Not affiliated with AWS, Azure, GCP, or official vendor certifications.
-            </p>
         </div>
     </footer>
 
     <script src="src/certificate.js"></script>
     <script src="src/app.js"></script>
+    <script>
+        document.getElementById('disclaimerContactBtn').addEventListener('click', () => {
+            const signupModal = document.getElementById('signupModal');
+            if (signupModal) signupModal.classList.remove('hidden');
+        });
+    </script>
 </body>
 
 </html>
