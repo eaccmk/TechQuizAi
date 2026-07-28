@@ -1,4 +1,4 @@
-// TechQuizAi Central Configuration & Branding System
+// TechQuizAi Central Configuration & Branding System (Build-Time Generated)
 const CONFIG = {
     appName: 'TechQuizAi',
     tagline: 'Master Cloud Computing, One Quiz at a Time',
@@ -6,7 +6,7 @@ const CONFIG = {
     logoIcon: '☁️',
     copyrightYear: 2026,
     copyrightText: 'Built for learners, by learners.',
-    analyticsId: 'G-MEASUREMENT_ID', // Replace with your Google Analytics 4 Measurement ID
+    analyticsId: "G-MEASUREMENT_ID",
     
     urls: {
         siteUrl: 'https://techquizai.netlify.app/',
@@ -16,7 +16,7 @@ const CONFIG = {
         linkedin: 'https://www.linkedin.com/in/millankaul',
         github: 'https://github.com/eaccmk',
         blog: 'https://qualitywithmillan.github.io/',
-        googleFormUrl: 'https://docs.google.com/forms/d/e/1FAIpQLSdQcyNJvncn5nWyeZTaCOGHplx-LOnyLDJPrgnpmezO0-goCg/formResponse'
+        googleFormUrl: "https://docs.google.com/forms/d/e/1FAIpQLSdQcyNJvncn5nWyeZTaCOGHplx-LOnyLDJPrgnpmezO0-goCg/formResponse"
     },
     
     storageKeys: {
