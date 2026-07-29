@@ -2,7 +2,7 @@
 const CONFIG = {
     appName: 'TechQuizAi',
     tagline: 'Master Cloud Computing, One Quiz at a Time',
-    heroSubtitle: 'Learn Cloud fundamentals, AI, LLM, Agents, Eval, RAG, MCP through interactive quizzes. No fluff, just concepts that stick.',
+    heroSubtitle: 'Learn Cloud fundamentals, AWS, GCP, Azure, GenAI, RAG, MCP, Devops, AIOps, Agents, Data Science through interactive quizzes. No fluff, just concepts that stick.',
     logoIcon: '☁️',
     copyrightYear: 2026,
     copyrightText: 'Built for learners, by learners.',
