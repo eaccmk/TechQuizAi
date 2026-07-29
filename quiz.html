@@ -4,8 +4,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-    <title>TechQuizAi - Interactive Quiz</title>
+    <meta name="description" content="Test your knowledge with our free interactive tech quizzes. Learn AI, MCP, LLM concepts, and Cloud Computing fundamentals through hands-on training.">
+    <meta name="keywords" content="free, certifications, AI, MCP, LLM, training, concepts, basics, fundamentals, learn, knowledge, interactive quiz">
+    <title>TechQuizAi - Free Interactive Tech Quiz | Learn AI & Cloud Concepts</title>
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#7c3aed">
+    
+    <!-- Open Graph / Social Sharing -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://techquizai.netlify.app/quiz.html">
+    <meta property="og:title" content="TechQuizAi - Free Interactive Tech Quiz | Learn AI & Cloud Concepts">
+    <meta property="og:description" content="Test your knowledge with our free interactive tech quizzes. Learn AI, MCP, LLM concepts, and Cloud Computing fundamentals through hands-on training.">
+    <meta property="og:image" content="https://techquizai.netlify.app/assets/favicon.png">
+    
+    <!-- Twitter Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://techquizai.netlify.app/quiz.html">
+    <meta name="twitter:title" content="TechQuizAi - Free Interactive Tech Quiz | Learn AI & Cloud Concepts">
+    <meta name="twitter:description" content="Test your knowledge with our free interactive tech quizzes. Learn AI, MCP, LLM concepts, and Cloud Computing fundamentals through hands-on training.">
+    <meta name="twitter:image" content="https://techquizai.netlify.app/assets/favicon.png">
+
+    <link rel="canonical" href="https://techquizai.netlify.app/quiz.html">
     <link rel="icon" type="image/png" href="assets/favicon.png">
+    <link rel="apple-touch-icon" href="assets/favicon.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="src/quiz.css">
     <script src="src/config.js"></script>
@@ -43,6 +64,22 @@
             <div class="modal-actions">
                 <button class="btn-modal btn-cancel" id="cancelSubmit">Keep Reviewing</button>
                 <button class="btn-modal btn-confirm" id="confirmSubmit">Submit Quiz</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Name Input Modal (for direct launch) -->
+    <div class="modal-overlay hidden" id="nameModal" role="dialog" aria-modal="true" aria-labelledby="nameTitle">
+        <div class="modal-card">
+            <div class="modal-icon" aria-hidden="true">📜</div>
+            <h2 id="nameTitle">Personalize Your Certificate</h2>
+            <p>Enter your full name as you would like it to see on your Certificate of Completion.</p>
+            <div class="input-group">
+                <label for="userNameInput" class="sr-only">Full Name</label>
+                <input type="text" id="userNameInput" placeholder="e.g. Alex Morgan" maxlength="40" autocomplete="name">
+            </div>
+            <div class="modal-actions">
+                <button class="btn-modal btn-confirm" id="startQuizBtn" style="flex: 1;">Start Quiz →</button>
             </div>
         </div>
     </div>

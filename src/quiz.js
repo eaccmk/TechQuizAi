@@ -170,6 +170,46 @@ async function initQuiz() {
     }
 
     userAnswers = new Array(questions.length).fill(null);
+    
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get('ref') === 'TechQuizAi-tile') {
+        const nameModal = document.getElementById('nameModal');
+        const userNameInput = document.getElementById('userNameInput');
+        const startQuizBtn = document.getElementById('startQuizBtn');
+        
+        if (nameModal && startQuizBtn) {
+            const existingName = localStorage.getItem(userNameKey) || '';
+            if (userNameInput) userNameInput.value = existingName;
+            nameModal.classList.remove('hidden');
+            setTimeout(() => userNameInput && userNameInput.focus(), 100);
+            
+            const startQuizHandler = () => {
+                const enteredName = (userNameInput ? userNameInput.value.trim() : '') || defaultUser;
+                localStorage.setItem(userNameKey, enteredName);
+                nameModal.classList.add('hidden');
+                
+                if (window.gtag) {
+                    gtag('event', 'quiz_started_via_share', { quiz_id: quizId });
+                } else if (window.dataLayer) {
+                    window.dataLayer.push({
+                        event: 'quiz_started_via_share',
+                        quiz_id: quizId
+                    });
+                }
+                
+                renderStack(0);
+            };
+            
+            startQuizBtn.addEventListener('click', startQuizHandler);
+            if (userNameInput) {
+                userNameInput.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter') startQuizHandler();
+                });
+            }
+            return; // Wait for user to enter name before rendering stack
+        }
+    }
+
     renderStack(0);
 }
 

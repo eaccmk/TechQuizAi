@@ -158,8 +158,8 @@ function buildQuizzes() {
     const configContent = `// TechQuizAi Central Configuration & Branding System (Build-Time Generated)
 const CONFIG = {
     appName: 'TechQuizAi',
-    tagline: 'Master Cloud Computing, One Quiz at a Time',
-    heroSubtitle: 'Learn Cloud fundamentals, AWS, GCP, Azure, GenAI, RAG, MCP, Devops, AIOps, Agents, Data Science through interactive quizzes. No fluff, just concepts that stick.',
+    tagline: 'Master Tech Concepts, One Quiz at a Time',
+    heroSubtitle: 'Interactive quizzes in Cloud Computing, AI/ML, and Data Science designed for Developers, AI Engineers, QA/SDETs, DevRels, and Data Scientists.',
     logoIcon: '☁️',
     copyrightYear: 2026,
     copyrightText: 'Built for learners, by learners.',
