@@ -136,8 +136,11 @@ function renderQuizzes(list, searchTerm = '') {
         const headingId = `cat-${catName.replace(/[^a-zA-Z0-9]/g, '')}`;
         html += `
         <section class="category-block" aria-labelledby="${headingId}">
-            <div class="category-header">
-                <h2 id="${headingId}">${escapeHtml(catName)}</h2>
+            <div class="category-header" onclick="this.parentElement.classList.toggle('collapsed')">
+                <div class="header-left">
+                    <i class="fa-solid fa-chevron-down toggle-icon"></i>
+                    <h2 id="${headingId}">${escapeHtml(catName)}</h2>
+                </div>
                 <span class="quiz-count">${catQuizzes.length} quiz${catQuizzes.length === 1 ? '' : 'zes'}</span>
             </div>
             <div class="category-grid">
@@ -426,6 +429,7 @@ function proceedToQuiz() {
     localStorage.setItem(userNameKey, enteredName);
     closeNameModal();
     if (targetQuizId) {
+        sessionStorage.setItem('techquizai_current_quiz', targetQuizId);
         window.location.href = `quiz.html?id=${targetQuizId}`;
     }
 }

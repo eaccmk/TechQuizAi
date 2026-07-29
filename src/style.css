@@ -243,11 +243,39 @@ body {
     margin-bottom: 16px;
     padding-bottom: 8px;
     border-bottom: 1px solid var(--border);
+    cursor: pointer;
+    user-select: none;
+    transition: opacity 0.2s ease;
+}
+
+.category-header:hover {
+    opacity: 0.8;
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.toggle-icon {
+    font-size: 14px;
+    color: var(--text-secondary);
+    transition: transform 0.2s ease;
+}
+
+.category-block.collapsed .toggle-icon {
+    transform: rotate(-90deg);
+}
+
+.category-block.collapsed .category-grid {
+    display: none;
 }
 
 .category-header h2 {
     font-size: 20px;
     font-weight: 700;
+    margin: 0;
     color: var(--text-primary);
 }
 
