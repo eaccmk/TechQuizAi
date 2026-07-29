@@ -6,7 +6,7 @@ const CONFIG = {
     logoIcon: '☁️',
     copyrightYear: 2026,
     copyrightText: 'Built for learners, by learners.',
-    analyticsId: "G-MEASUREMENT_ID",
+    analyticsId: "",
     
     urls: {
         siteUrl: 'https://techquizai.netlify.app/',
@@ -16,7 +16,7 @@ const CONFIG = {
         linkedin: 'https://www.linkedin.com/in/millankaul',
         github: 'https://github.com/eaccmk',
         blog: 'https://qualitywithmillan.github.io/',
-        googleFormUrl: "https://docs.google.com/forms/d/e/1FAIpQLSdQcyNJvncn5nWyeZTaCOGHplx-LOnyLDJPrgnpmezO0-goCg/formResponse"
+        googleFormUrl: ""
     },
     
     storageKeys: {

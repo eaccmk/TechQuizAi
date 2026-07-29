@@ -151,8 +151,8 @@ function buildQuizzes() {
     });
 
     // Support Netlify Build Environment Variables (.env)
-    const analyticsId = process.env.ANALYTICS_ID || process.env.GA_MEASUREMENT_ID || 'G-MEASUREMENT_ID';
-    const googleFormUrl = process.env.GOOGLE_FORM_URL || 'https://docs.google.com/forms/d/e/1FAIpQLSdQcyNJvncn5nWyeZTaCOGHplx-LOnyLDJPrgnpmezO0-goCg/formResponse';
+    const analyticsId = process.env.ANALYTICS_ID || process.env.GA_MEASUREMENT_ID || '';
+    const googleFormUrl = process.env.GOOGLE_FORM_URL || '';
 
     const configContent = `// TechQuizAi Central Configuration & Branding System (Build-Time Generated)
 const CONFIG = {
@@ -202,7 +202,7 @@ if (typeof module !== 'undefined' && module.exports) {
 `;
 
     fs.writeFileSync(path.join(srcDir, 'config.js'), configContent);
-    console.log(`✓ Compiled src/config.js with build-time environment variables (Analytics: ${analyticsId})`);
+    console.log(`✓ Compiled src/config.js with build-time environment variables`);
 
     const files = getQuizFiles(quizzesDir);
     const manifest = [];
