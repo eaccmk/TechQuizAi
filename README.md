@@ -1,6 +1,7 @@
 # TechQuizAi ☁️
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/e4a21b3c-7e1a-45de-bfb5-53323c90e7ab/deploy-status)](https://app.netlify.com/projects/techquizai/deploys) [![Automated Release](https://github.com/eaccmk/TechQuizAi/actions/workflows/release.yml/badge.svg?branch=netlify)](https://github.com/eaccmk/TechQuizAi/actions/workflows/release.yml)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/e4a21b3c-7e1a-45de-bfb5-53323c90e7ab/deploy-status)](https://app.netlify.com/projects/techquizai/deploys)
+[![Automated Release](https://github.com/eaccmk/TechQuizAi/actions/workflows/release.yml/badge.svg?branch=netlify)](https://github.com/eaccmk/TechQuizAi/actions/workflows/release.yml)
 
 > **Master Cloud Computing, One Quiz at a Time.**
 
