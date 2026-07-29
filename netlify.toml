@@ -1,7 +1,9 @@
 [build]
   command = "npm run build"
   publish = "."
-  SECRETS_SCAN_ENABLED = false
+
+[build.environment]
+  SECRETS_SCAN_ENABLED = "false"
   SECRETS_SCAN_OMIT_KEYS = "ANALYTICS_ID,GOOGLE_FORM_URL"
   SECRETS_SCAN_OMIT_PATHS = "src/config.js,scripts/build-quizzes.js"
 
