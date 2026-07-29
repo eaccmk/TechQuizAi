@@ -58,6 +58,29 @@ function generateCertificate(score, userName = 'Learner', topicTitle = 'AWS Basi
     link.download = `${appTitle}-Certificate-${sanitizedTitle}.png`;
     link.href = canvas.toDataURL('image/png');
     link.click();
+
+    showToast('✅ Certificate downloaded successfully!');
+}
+
+function showToast(message) {
+    const existing = document.getElementById('certToast');
+    if (existing) existing.remove();
+
+    const toast = document.createElement('div');
+    toast.id = 'certToast';
+    toast.className = 'cert-toast';
+    toast.textContent = message;
+    
+    document.body.appendChild(toast);
+
+    // Trigger animation
+    setTimeout(() => toast.classList.add('show'), 10);
+
+    // Remove after 3 seconds
+    setTimeout(() => {
+        toast.classList.remove('show');
+        setTimeout(() => toast.remove(), 300);
+    }, 3000);
 }
 
 function drawPassStamp(ctx, centerX, centerY, stampColor = '#22c55e') {

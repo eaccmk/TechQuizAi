@@ -41,7 +41,7 @@ function shuffleArray(array) {
 
 function getQuizIdFromUrl() {
     const params = new URLSearchParams(window.location.search);
-    return params.get('id') || 'aws-basics';
+    return params.get('id') || sessionStorage.getItem('techquizai_current_quiz') || 'aws-basics';
 }
 
 // Browser-side Markdown Quiz parser fallback
@@ -170,6 +170,46 @@ async function initQuiz() {
     }
 
     userAnswers = new Array(questions.length).fill(null);
+    
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get('ref') === 'TechQuizAi-tile') {
+        const nameModal = document.getElementById('nameModal');
+        const userNameInput = document.getElementById('userNameInput');
+        const startQuizBtn = document.getElementById('startQuizBtn');
+        
+        if (nameModal && startQuizBtn) {
+            const existingName = localStorage.getItem(userNameKey) || '';
+            if (userNameInput) userNameInput.value = existingName;
+            nameModal.classList.remove('hidden');
+            setTimeout(() => userNameInput && userNameInput.focus(), 100);
+            
+            const startQuizHandler = () => {
+                const enteredName = (userNameInput ? userNameInput.value.trim() : '') || defaultUser;
+                localStorage.setItem(userNameKey, enteredName);
+                nameModal.classList.add('hidden');
+                
+                if (window.gtag) {
+                    gtag('event', 'quiz_started_via_share', { quiz_id: quizId });
+                } else if (window.dataLayer) {
+                    window.dataLayer.push({
+                        event: 'quiz_started_via_share',
+                        quiz_id: quizId
+                    });
+                }
+                
+                renderStack(0);
+            };
+            
+            startQuizBtn.addEventListener('click', startQuizHandler);
+            if (userNameInput) {
+                userNameInput.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter') startQuizHandler();
+                });
+            }
+            return; // Wait for user to enter name before rendering stack
+        }
+    }
+
     renderStack(0);
 }
 
@@ -401,14 +441,24 @@ if (confirmSubmit) {
 async function calculateAndShowResults() {
     let correctCount = 0;
 
-    // Verify each user answer against the SHA-256 hash of the correct option
+    // Verify each user answer
     for (let i = 0; i < questions.length; i++) {
         const userChoice = userAnswers[i];
         if (userChoice) {
-            const hash = await sha256(userChoice);
-            if (hash === questions[i].answerHash) {
-                correctCount++;
+            let isCorrect = false;
+            const q = questions[i];
+            
+            if (q.encodedAnswer) {
+                try {
+                    const decoded = atob(q.encodedAnswer);
+                    isCorrect = (userChoice === decoded);
+                } catch (e) {}
+            } else if (q.answerHash) {
+                const hash = await sha256(userChoice);
+                isCorrect = (hash === q.answerHash);
             }
+            
+            if (isCorrect) correctCount++;
         }
     }
 
@@ -431,6 +481,37 @@ async function calculateAndShowResults() {
 
     let html = '';
 
+    let summaryHtml = '<div class="results-summary-list">';
+    for (let i = 0; i < questions.length; i++) {
+        const q = questions[i];
+        const userChoice = userAnswers[i] || 'No answer';
+        let isCorrect = false;
+        let correctText = '';
+        
+        if (q.encodedAnswer) {
+            try {
+                correctText = atob(q.encodedAnswer);
+                if (userChoice) {
+                    isCorrect = (userChoice === correctText);
+                }
+            } catch (e) {}
+        } else if (q.answerHash && userChoice) {
+            const hash = await sha256(userChoice);
+            isCorrect = (hash === q.answerHash);
+        }
+        
+        summaryHtml += `
+            <div class="summary-item ${isCorrect ? 'correct' : 'incorrect'}">
+                <div class="summary-q">Q${i + 1}: ${escapeHtml(q.text)}</div>
+                <div class="summary-a">
+                    <div>Your answer: <span class="${isCorrect ? 'correct-text' : 'wrong-text'}">${escapeHtml(userChoice)}</span></div>
+                    ${!isCorrect && correctText ? `<div>Correct answer: <span class="correct-text">${escapeHtml(correctText)}</span></div>` : ''}
+                </div>
+            </div>
+        `;
+    }
+    summaryHtml += '</div>';
+
     // If user failed to achieve the 50% passing threshold
     if (!isPassed) {
         const storageKey = `${attemptsPrefix}${quizId}`;
@@ -445,6 +526,7 @@ async function calculateAndShowResults() {
       <div class="results-card">
         <p>Passing requires at least <strong>50% (${passThreshold}/${totalQ} correct answers)</strong>. Review the concepts and give it another shot!
         ${remaining > 0 ? `<br>You have <strong>${remaining} attempt${remaining === 1 ? '' : 's'}</strong> left.` : 'You\'ve used all your attempts for now.'}</p>
+        ${summaryHtml}
       </div>
       ${remaining > 0 ? `<button class="btn-result-action btn-primary-result" onclick="location.reload()">Retake Quiz Now</button>` : ''}
       <button class="btn-result-action btn-secondary-result" onclick="window.location.href='index.html'">Back to Dashboard</button>
@@ -465,6 +547,7 @@ async function calculateAndShowResults() {
     <div class="results-score">You scored ${correctCount}/${totalQ} (${Math.round((correctCount / totalQ) * 100)}%)</div>
     <div class="results-card">
       <p>${isPerfect ? `Outstanding work! You've mastered ${quizTitle} completely.` : `Great effort! You scored more than 50% (${correctCount}/${totalQ}) and earned your certificate of completion for ${quizTitle}.`}</p>
+      ${summaryHtml}
     </div>
     <button class="btn-result-action btn-primary-result" id="downloadCertBtn">📥 Download Certificate</button>
     <button class="btn-result-action btn-secondary-result" id="shareBtn">🔗 Share Achievement</button>
@@ -587,16 +670,38 @@ function handleShare(platform, text, url) {
                 copyToClipboard(`${text} ${url}`);
             }
             break;
-        case 'linkedin':
-            window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}`, '_blank');
+        case 'linkedin': {
+            const linkedInWebUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}`;
+            const linkedInAppUrl = `linkedin://shareArticle?mini=true&url=${encodedUrl}`;
+            openWithAppFallback(linkedInAppUrl, linkedInWebUrl);
             break;
-        case 'x':
-            window.open(`https://twitter.com/intent/tweet?text=${encodedText}&url=${encodedUrl}`, '_blank');
+        }
+        case 'x': {
+            const twitterWebUrl = `https://twitter.com/intent/tweet?text=${encodedText}&url=${encodedUrl}`;
+            const twitterAppUrl = `twitter://post?message=${encodedText} ${encodedUrl}`;
+            openWithAppFallback(twitterAppUrl, twitterWebUrl);
             break;
+        }
         case 'copy':
             copyToClipboard(`${text} ${url}`);
             break;
     }
+}
+
+function openWithAppFallback(appUrl, webUrl) {
+    const start = Date.now();
+    // Attempt to open the native app URI scheme
+    window.location.href = appUrl;
+    
+    // Set a timeout to fallback to the web URL if the app doesn't open
+    setTimeout(() => {
+        // If the app successfully launched, the browser should have backgrounded 
+        // and paused execution. If Date.now() is close to the timeout duration, 
+        // it means we are still in the browser and the app launch failed.
+        if (Date.now() - start < 1500) {
+            window.open(webUrl, '_blank');
+        }
+    }, 1000);
 }
 
 function copyToClipboard(fullText) {

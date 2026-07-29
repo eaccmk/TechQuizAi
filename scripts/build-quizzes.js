@@ -74,6 +74,7 @@ function parseMarkdownQuiz(filePath) {
                 text: questionText,
                 options,
                 answerHash: hashAnswer(correctAnswerText),
+                encodedAnswer: Buffer.from(correctAnswerText).toString('base64'),
                 hint: hint || 'No hint available for this question.'
             });
         });
@@ -101,7 +102,7 @@ function getQuizFiles(dirPath) {
         const stat = fs.statSync(filePath);
         if (stat && stat.isDirectory()) {
             results = results.concat(getQuizFiles(filePath));
-        } else if (file.endsWith('.md')) {
+        } else if (file.endsWith('.md') && file !== 'AGENTS.md' && file !== 'AGENT.md') {
             results.push(filePath);
         }
     });
@@ -121,7 +122,7 @@ function buildQuizzes() {
     const rootQuizFiles = fs.readdirSync(quizzesDir);
     rootQuizFiles.forEach(file => {
         const fullPath = path.join(quizzesDir, file);
-        if (fs.statSync(fullPath).isFile() && file.endsWith('.md')) {
+        if (fs.statSync(fullPath).isFile() && file.endsWith('.md') && file !== 'AGENTS.md' && file !== 'AGENT.md') {
             fs.unlinkSync(fullPath);
             console.log(`Cleaned loose root quiz file: ${file}`);
         }
@@ -157,8 +158,8 @@ function buildQuizzes() {
     const configContent = `// TechQuizAi Central Configuration & Branding System (Build-Time Generated)
 const CONFIG = {
     appName: 'TechQuizAi',
-    tagline: 'Master Cloud Computing, One Quiz at a Time',
-    heroSubtitle: 'Learn Cloud fundamentals, AI, LLM, Agents, Eval, RAG, MCP through interactive quizzes. No fluff, just concepts that stick.',
+    tagline: 'Master Tech Concepts, One Quiz at a Time',
+    heroSubtitle: 'Interactive quizzes in Cloud Computing, AI/ML, and Data Science designed for Developers, AI Engineers, QA/SDETs, DevRels, and Data Scientists.',
     logoIcon: '☁️',
     copyrightYear: 2026,
     copyrightText: 'Built for learners, by learners.',

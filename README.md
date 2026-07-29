@@ -1,8 +1,11 @@
 # TechQuizAi ☁️
 
-> **Master Cloud Computing, One Quiz at a Time.**
+[![Netlify Status](https://api.netlify.com/api/v1/badges/e4a21b3c-7e1a-45de-bfb5-53323c90e7ab/deploy-status)](https://app.netlify.com/projects/techquizai/deploys)
+[![Automated Release](https://github.com/eaccmk/TechQuizAi/actions/workflows/release.yml/badge.svg?branch=netlify)](https://github.com/eaccmk/TechQuizAi/actions/workflows/release.yml)
 
-TechQuizAi is a lightweight, scalable, Markdown-driven cloud computing & AI quiz platform. Users take interactive swipeable card-based quizzes across **AWS**, **AI Foundations**, **Google Cloud Platform (GCP)**, and **Azure Cloud & DevOps**, earn personalized certificates of completion, and share their achievements.
+> **Master Tech Concepts, One Quiz at a Time.**
+
+TechQuizAi is a lightweight, scalable, Markdown-driven platform. Users take interactive swipeable card-based quizzes in Cloud Computing, AI/ML, and Data Science. Designed for Developers, AI Engineers, QA/SDETs, DevRels, and Data Scientists to earn personalized certificates of completion and share their achievements.
 
 🌐 **Live Demo**: [https://techquizai.netlify.app/](https://techquizai.netlify.app/)
 

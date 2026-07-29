@@ -23,12 +23,12 @@ window.QUIZ_CATALOG = {
     {
       "id": "mcp-concepts",
       "icon": "🔌",
-      "title": "MCP Concepts",
-      "subtitle": "Master Model Context Protocol, agent tools, and server integrations",
+      "title": "MCP Fundamentals (v2)",
+      "subtitle": "Master the Model Context Protocol, including the latest July 2026 v2 release",
       "category": "Artificial Intelligence (AI) Foundations",
       "questions": 10,
       "completed": false,
-      "available": false
+      "available": true
     },
     {
       "id": "aws-basics",
@@ -56,19 +56,19 @@ window.QUIZ_CATALOG = {
       "title": "IAM Concepts",
       "subtitle": "Understand Identity and Access Management",
       "category": "AWS Fundamentals",
-      "questions": 5,
+      "questions": 10,
       "completed": false,
       "available": true
     },
     {
       "id": "azure-devops",
       "icon": "♾️",
-      "title": "Azure DevOps Essentials",
-      "subtitle": "Master CI/CD automation pipelines, Repos, and Azure release management",
+      "title": "Azure DevOps Fundamentals",
+      "subtitle": "Learn Azure Boards, Pipelines, Repos, and Artifacts",
       "category": "Azure Cloud & DevOps",
       "questions": 10,
       "completed": false,
-      "available": false
+      "available": true
     },
     {
       "id": "azure-fundamentals",
@@ -118,7 +118,7 @@ window.QUIZ_CATALOG = {
       "category": "Google Cloud Platform (GCP)",
       "questions": 10,
       "completed": false,
-      "available": false
+      "available": true
     }
   ],
   "catalog": {
@@ -147,13 +147,154 @@ window.QUIZ_CATALOG = {
     "mcp-concepts": {
       "id": "mcp-concepts",
       "icon": "🔌",
-      "title": "MCP Concepts",
-      "subtitle": "Master Model Context Protocol, agent tools, and server integrations",
+      "title": "MCP Fundamentals (v2)",
+      "subtitle": "Master the Model Context Protocol, including the latest July 2026 v2 release",
       "category": "Artificial Intelligence (AI) Foundations",
       "questionsCount": 10,
       "completed": false,
-      "available": false,
-      "questions": []
+      "available": true,
+      "questions": [
+        {
+          "id": 1,
+          "difficulty": "easy",
+          "text": "What does MCP stand for in the context of AI assistants?",
+          "options": [
+            "Model Context Protocol",
+            "Machine Computation Protocol",
+            "Model Connection Process",
+            "Multi-Context Parser"
+          ],
+          "answerHash": "18e5fdf81433e07d7f52e4f22992eea8d4cf3e631bfd2a5e16d836bb3e6a4d04",
+          "encodedAnswer": "TW9kZWwgQ29udGV4dCBQcm90b2NvbA==",
+          "hint": "It's an open standard that connects AI models to external tools and data sources."
+        },
+        {
+          "id": 2,
+          "difficulty": "easy",
+          "text": "What is the primary goal of the Model Context Protocol?",
+          "options": [
+            "To train faster LLMs",
+            "To standardize how AI models securely access external context (files, APIs, tools)",
+            "To replace REST APIs entirely",
+            "To generate images from text"
+          ],
+          "answerHash": "16d371e771ebf64ec3e4200de989b99f1ab736878bfd612e815b97c266a96949",
+          "encodedAnswer": "VG8gc3RhbmRhcmRpemUgaG93IEFJIG1vZGVscyBzZWN1cmVseSBhY2Nlc3MgZXh0ZXJuYWwgY29udGV4dCAoZmlsZXMsIEFQSXMsIHRvb2xzKQ==",
+          "hint": "It acts like a \"USB-C\" port for AI applications."
+        },
+        {
+          "id": 3,
+          "difficulty": "medium",
+          "text": "What major architectural shift was introduced in MCP v2 release - July 2026 (7.28)?",
+          "options": [
+            "Moving from JSON to XML",
+            "Requiring sticky sessions",
+            "Transitioning to a fully stateless protocol core",
+            "Enforcing stateful WebSocket connections only"
+          ],
+          "answerHash": "e4e57dd4ad12231095414501370f424b3dda832d7af68298567ea893023ec709",
+          "encodedAnswer": "VHJhbnNpdGlvbmluZyB0byBhIGZ1bGx5IHN0YXRlbGVzcyBwcm90b2NvbCBjb3Jl",
+          "hint": "This change allows MCP servers to easily run behind standard load balancers."
+        },
+        {
+          "id": 4,
+          "difficulty": "medium",
+          "text": "Are MCP v2 servers backward compatible with v1 clients?",
+          "options": [
+            "No, they are completely incompatible",
+            "Yes, the specification was designed with backward compatibility in mind",
+            "Only for read-only operations",
+            "Only if using the Python SDK"
+          ],
+          "answerHash": "f3c339a2c8f4787037d0bc45bebe13727d6a382ec7521c42cdb4b020beec64e4",
+          "encodedAnswer": "WWVzLCB0aGUgc3BlY2lmaWNhdGlvbiB3YXMgZGVzaWduZWQgd2l0aCBiYWNrd2FyZCBjb21wYXRpYmlsaXR5IGluIG1pbmQ=",
+          "hint": "The upgrade path was designed to avoid breaking existing implementations."
+        },
+        {
+          "id": 5,
+          "difficulty": "medium",
+          "text": "Which of the following is a new feature introduced in MCP v2?",
+          "options": [
+            "Basic Prompts",
+            "Multi Round-Trip Requests for interactive tools",
+            "Local file reading only",
+            "Synchronous single-threaded execution"
+          ],
+          "answerHash": "edaaa9a1f4907abec4ae71bd9e80e695318db11cf24da971668a3866f1a24ef7",
+          "encodedAnswer": "TXVsdGkgUm91bmQtVHJpcCBSZXF1ZXN0cyBmb3IgaW50ZXJhY3RpdmUgdG9vbHM=",
+          "hint": "It enables tools that need back-and-forth interaction without long-lived sessions."
+        },
+        {
+          "id": 6,
+          "difficulty": "medium",
+          "text": "What new framework was formalized in the MCP v2 release to support new protocol features?",
+          "options": [
+            "The Middleware Framework",
+            "The Authentication Framework",
+            "The Extensions Framework",
+            "The Plugin Marketplace"
+          ],
+          "answerHash": "947eb01f576e9ab029423541888c421e452a1c1607f40519ee837ae871d20887",
+          "encodedAnswer": "VGhlIEV4dGVuc2lvbnMgRnJhbWV3b3Jr",
+          "hint": "It provides a standard way to extend protocol capabilities over time."
+        },
+        {
+          "id": 7,
+          "difficulty": "medium",
+          "text": "In MCP terminology, what is a \"Host\"?",
+          "options": [
+            "The database storing the vectors",
+            "The application (like an IDE or chat interface) initiating the connection and utilizing the AI model",
+            "The external API providing the data",
+            "The physical server running the LLM"
+          ],
+          "answerHash": "7175f1aadb95d7d322fb65b50e87cc296c0cc2a9375494f8a2fadd82ddab98c0",
+          "encodedAnswer": "VGhlIGFwcGxpY2F0aW9uIChsaWtlIGFuIElERSBvciBjaGF0IGludGVyZmFjZSkgaW5pdGlhdGluZyB0aGUgY29ubmVjdGlvbiBhbmQgdXRpbGl6aW5nIHRoZSBBSSBtb2RlbA==",
+          "hint": "Claude Desktop and AI IDEs act as this component."
+        },
+        {
+          "id": 8,
+          "difficulty": "hard",
+          "text": "Which capabilities graduated to official protocol extensions in the MCP v2 update?",
+          "options": [
+            "Image generation and audio parsing",
+            "Tasks & MCP Apps",
+            "Vector search and RAG indexing",
+            "Web scraping and browser automation"
+          ],
+          "answerHash": "337f955fd101df39f7b1dd4a0565be8a0d635f2f1bb9556c1d25df50746081ea",
+          "encodedAnswer": "VGFza3MgJiBNQ1AgQXBwcw==",
+          "hint": "These deal with executing background jobs and full application contexts."
+        },
+        {
+          "id": 9,
+          "difficulty": "hard",
+          "text": "What security policy was officially introduced in the July 2026 MCP v2 release?",
+          "options": [
+            "Required biometric authentication",
+            "Mandatory end-to-end encryption for local processes",
+            "Authorization hardening and a formal 12-month deprecation policy",
+            "Blocking all outbound internet access by default"
+          ],
+          "answerHash": "cd865385824c3c0f01a47ef924a2f85e6fd7ae04f13f33c2e31697f78d0bea59",
+          "encodedAnswer": "QXV0aG9yaXphdGlvbiBoYXJkZW5pbmcgYW5kIGEgZm9ybWFsIDEyLW1vbnRoIGRlcHJlY2F0aW9uIHBvbGljeQ==",
+          "hint": "It focuses on lifecycle management and stricter auth rules."
+        },
+        {
+          "id": 10,
+          "difficulty": "hard",
+          "text": "How does the stateless nature of MCP v2 improve production deployments?",
+          "options": [
+            "It makes the protocol run faster on mobile devices",
+            "It eliminates the need for sticky sessions, simplifying horizontal scaling behind load balancers",
+            "It reduces the size of the JSON payload by 50%",
+            "It prevents the AI model from hallucinating"
+          ],
+          "answerHash": "109b9c2bc30188c3ffde4672afe02dde4ef25722d09de4f1c9dba33f0f472ed4",
+          "encodedAnswer": "SXQgZWxpbWluYXRlcyB0aGUgbmVlZCBmb3Igc3RpY2t5IHNlc3Npb25zLCBzaW1wbGlmeWluZyBob3Jpem9udGFsIHNjYWxpbmcgYmVoaW5kIGxvYWQgYmFsYW5jZXJz",
+          "hint": "Think about how HTTP scales compared to stateful protocols."
+        }
+      ]
     },
     "aws-basics": {
       "id": "aws-basics",
@@ -168,15 +309,16 @@ window.QUIZ_CATALOG = {
         {
           "id": 1,
           "difficulty": "easy",
-          "text": "What does IAM stand for?",
+          "text": "What is an AWS Region?",
           "options": [
-            "Identity and Access Management",
-            "Internal Application Model",
-            "Internet Access Module",
-            "Integrated Auth Mechanism"
+            "A physical location in the world with multiple Availability Zones",
+            "A single data center",
+            "A billing boundary",
+            "An edge location for caching"
           ],
-          "answerHash": "bb133561f40b2cbc6282dd2e93289d786c5f367d9d3f49ca3dc5252d398f3ab4",
-          "hint": "It controls who can do what in your AWS account."
+          "answerHash": "1d3bf210c6e7e97fad73a88bedfb4722afbb741afcc9fc1f24dbc9f184c194f2",
+          "encodedAnswer": "QSBwaHlzaWNhbCBsb2NhdGlvbiBpbiB0aGUgd29ybGQgd2l0aCBtdWx0aXBsZSBBdmFpbGFiaWxpdHkgWm9uZXM=",
+          "hint": "Think of it as a broad geographical area where AWS has data centers."
         },
         {
           "id": 2,
@@ -189,6 +331,7 @@ window.QUIZ_CATALOG = {
             "Lambda"
           ],
           "answerHash": "44d6a8a73eddb284d49799fdbfa2919a004ece6d2df3546eaa4e246048bcdf81",
+          "encodedAnswer": "UzM=",
           "hint": "Think \"buckets\" of files."
         },
         {
@@ -202,6 +345,7 @@ window.QUIZ_CATALOG = {
             "Elastic Container Cloud"
           ],
           "answerHash": "db54992d0fdfe8a01297730e3e0852bc6af33fa6996067db7a1718b942db5fc8",
+          "encodedAnswer": "RWxhc3RpYyBDb21wdXRlIENsb3Vk",
           "hint": "It's about renting virtual servers."
         },
         {
@@ -215,6 +359,7 @@ window.QUIZ_CATALOG = {
             "CloudFront"
           ],
           "answerHash": "14723897eca7b2b287c5e0011ca710e40bd47299df22d8a2587a34667492aa47",
+          "encodedAnswer": "UkRT",
           "hint": "Think MySQL, PostgreSQL, hosted by AWS."
         },
         {
@@ -228,6 +373,7 @@ window.QUIZ_CATALOG = {
             "A monitoring service"
           ],
           "answerHash": "17b7ec3397e68005d20f5eefb9e38a7623534a263ef0912a405141e37a5e8f72",
+          "encodedAnswer": "QSB2aXJ0dWFsIHByaXZhdGUgbmV0d29yayBpbiBBV1M=",
           "hint": "It's your own isolated network inside AWS."
         },
         {
@@ -241,6 +387,7 @@ window.QUIZ_CATALOG = {
             "CloudFormation"
           ],
           "answerHash": "d01a39af588122591bd7583b877f54644a8bbe36d4e7a70d605e9702867884ca",
+          "encodedAnswer": "Q2xvdWRGcm9udA==",
           "hint": "Think fast content delivery to users worldwide."
         },
         {
@@ -254,6 +401,7 @@ window.QUIZ_CATALOG = {
             "Unlimited"
           ],
           "answerHash": "ef2d127de37b942baad06145e54b0c619a1f22327b2ebbcfbec78f5564afe39d",
+          "encodedAnswer": "NQ==",
           "hint": "It's a soft limit you can request to increase."
         },
         {
@@ -267,20 +415,22 @@ window.QUIZ_CATALOG = {
             "S3 One Zone-IA"
           ],
           "answerHash": "03ac1fe0756f7bbb3986f4cbd61b1662c343959a567d64dfd0188d1a824f49d8",
+          "encodedAnswer": "UzMgR2xhY2llcg==",
           "hint": "Think long-term archival storage."
         },
         {
           "id": 9,
           "difficulty": "medium",
-          "text": "What does an IAM policy attached to a role define?",
+          "text": "What is the primary purpose of Amazon EC2 Auto Scaling?",
           "options": [
-            "Billing limits",
-            "Permissions",
-            "Network speed",
-            "Storage size"
+            "To automatically encrypt your data",
+            "To automatically add or remove EC2 instances based on demand",
+            "To migrate on-premise databases to AWS",
+            "To route DNS traffic globally"
           ],
-          "answerHash": "abccc78cc93c07931feccfbd0665c003373b48334fd8d4cf5c6d0c714e68f26e",
-          "hint": "It's about what actions are allowed or denied."
+          "answerHash": "fba1bd3d3d5fd45ceade5f569f58af0a63294aa8473604a8924aed2743d64d92",
+          "encodedAnswer": "VG8gYXV0b21hdGljYWxseSBhZGQgb3IgcmVtb3ZlIEVDMiBpbnN0YW5jZXMgYmFzZWQgb24gZGVtYW5k",
+          "hint": "Think about maintaining application availability automatically."
         },
         {
           "id": 10,
@@ -293,6 +443,7 @@ window.QUIZ_CATALOG = {
             "Weak consistency"
           ],
           "answerHash": "028ad6797c2f7492727353be4f17937fad5637ee55a9d3168458c741b57f31be",
+          "encodedAnswer": "U3Ryb25nIHJlYWQtYWZ0ZXItd3JpdGUgY29uc2lzdGVuY3k=",
           "hint": "AWS made a major consistency announcement for S3."
         }
       ]
@@ -314,7 +465,7 @@ window.QUIZ_CATALOG = {
       "title": "IAM Concepts",
       "subtitle": "Understand Identity and Access Management",
       "category": "AWS Fundamentals",
-      "questionsCount": 5,
+      "questionsCount": 10,
       "completed": false,
       "available": true,
       "questions": [
@@ -329,6 +480,7 @@ window.QUIZ_CATALOG = {
             "Root User"
           ],
           "answerHash": "bd27098052ba14e638dcf9b62f97825c5baf4077ab3841455efc3e4afddb0f57",
+          "encodedAnswer": "SUFNIFJvbGU=",
           "hint": "Used by EC2 instances or Lambda functions to assume permissions temporarily."
         },
         {
@@ -342,6 +494,7 @@ window.QUIZ_CATALOG = {
             "Delete the root account immediately"
           ],
           "answerHash": "3f2de56da9151efe0d0652897206a44475232305f7e50830ae08b9d78ee310f5",
+          "encodedAnswer": "RW5hYmxlIE1GQSBhbmQgbG9jayBpdCBhd2F5LCB1c2luZyBJQU0gdXNlcnMvcm9sZXMgaW5zdGVhZA==",
           "hint": "Root has unrestricted access to everything in your AWS account."
         },
         {
@@ -355,6 +508,7 @@ window.QUIZ_CATALOG = {
             "TOML"
           ],
           "answerHash": "db1a21a0bc2ef8fbe13ac4cf044e8c9116d29137d5ed8b916ab63dcb2d4290df",
+          "encodedAnswer": "SlNPTg==",
           "hint": "Key-value pairs containing Version, Statement, Effect, Action, Resource."
         },
         {
@@ -368,6 +522,7 @@ window.QUIZ_CATALOG = {
             "Causes an evaluation error"
           ],
           "answerHash": "6c4d4f42b2ce10ef94613d2698b0b802b0d600ca9bcee6c26ecebd53d792bbc9",
+          "encodedAnswer": "REVOWSBvdmVycmlkZXMgYW55IEFMTE9X",
           "hint": "In AWS IAM, an explicit DENY always wins."
         },
         {
@@ -381,20 +536,232 @@ window.QUIZ_CATALOG = {
             "Amazon Cognito Sync"
           ],
           "answerHash": "3b6c6e58f96b06e870d0c44c73b0967ea97bbd241c35b4fb1c4863916631d17c",
+          "encodedAnswer": "SUFNIElkZW50aXR5IENlbnRlciAoU0FNTCAyLjAgLyBPSURDIEZlZGVyYXRpb24p",
           "hint": "Enables Single Sign-On (SSO) with enterprise identity systems."
+        },
+        {
+          "id": 6,
+          "difficulty": "easy",
+          "text": "What is the principle of least privilege in AWS IAM?",
+          "options": [
+            "Granting only the permissions required to perform a specific task",
+            "Giving all users Administrator access",
+            "Allowing read-only access to everyone by default",
+            "Restricting access to only the root user"
+          ],
+          "answerHash": "a07239cd837f58bad5229ad633c1eb71a84e8dc4fda484e5ad8197a906e1e420",
+          "encodedAnswer": "R3JhbnRpbmcgb25seSB0aGUgcGVybWlzc2lvbnMgcmVxdWlyZWQgdG8gcGVyZm9ybSBhIHNwZWNpZmljIHRhc2s=",
+          "hint": "Give users exactly what they need, and nothing more."
+        },
+        {
+          "id": 7,
+          "difficulty": "medium",
+          "text": "What AWS service allows you to centrally manage access across multiple AWS accounts?",
+          "options": [
+            "IAM Access Analyzer",
+            "AWS Shield",
+            "Amazon GuardDuty",
+            "AWS Organizations (with IAM Identity Center)"
+          ],
+          "answerHash": "e159dfde45b8ccd9fcd5604009d0de612fe12a221ef0b4ee6e307a326cc9a6df",
+          "encodedAnswer": "QVdTIE9yZ2FuaXphdGlvbnMgKHdpdGggSUFNIElkZW50aXR5IENlbnRlcik=",
+          "hint": "It helps you manage policies and billing across many accounts."
+        },
+        {
+          "id": 8,
+          "difficulty": "medium",
+          "text": "Which of the following can be used to add an extra layer of security for user logins?",
+          "options": [
+            "Root keys",
+            "Password rotation",
+            "Multi-Factor Authentication (MFA)",
+            "VPC Peering"
+          ],
+          "answerHash": "8378b578d2cda72f445c636e8f1540e087c63bb44bde6da843a178e43f6bf664",
+          "encodedAnswer": "TXVsdGktRmFjdG9yIEF1dGhlbnRpY2F0aW9uIChNRkEp",
+          "hint": "Requires a token from a device like a phone in addition to a password."
+        },
+        {
+          "id": 9,
+          "difficulty": "hard",
+          "text": "What is a permissions boundary in IAM?",
+          "options": [
+            "An advanced feature that sets the maximum permissions that an identity-based policy can grant to an IAM entity",
+            "A firewall rule that blocks IP addresses",
+            "A limit on how much money an IAM user can spend",
+            "A geographic restriction on where an IAM user can log in"
+          ],
+          "answerHash": "9fa423ff250f55b3035fc0d0cc7a8651a29931ebb2331969a0fe0c97981b7517",
+          "encodedAnswer": "QW4gYWR2YW5jZWQgZmVhdHVyZSB0aGF0IHNldHMgdGhlIG1heGltdW0gcGVybWlzc2lvbnMgdGhhdCBhbiBpZGVudGl0eS1iYXNlZCBwb2xpY3kgY2FuIGdyYW50IHRvIGFuIElBTSBlbnRpdHk=",
+          "hint": "It acts as an upper limit on permissions, even if a policy allows more."
+        },
+        {
+          "id": 10,
+          "difficulty": "hard",
+          "text": "When evaluating an IAM policy, what happens if there is no explicit ALLOW or explicit DENY for an action?",
+          "options": [
+            "The action is explicitly allowed",
+            "The action is implicitly denied",
+            "An error is thrown",
+            "The action is allowed if the user is in the admin group"
+          ],
+          "answerHash": "535ebd9937ed3e3f1acea590b7f86d715a582a6165fe3627a4472ea37b726897",
+          "encodedAnswer": "VGhlIGFjdGlvbiBpcyBpbXBsaWNpdGx5IGRlbmllZA==",
+          "hint": "AWS defaults to \"no\" unless specifically told \"yes\"."
         }
       ]
     },
     "azure-devops": {
       "id": "azure-devops",
       "icon": "♾️",
-      "title": "Azure DevOps Essentials",
-      "subtitle": "Master CI/CD automation pipelines, Repos, and Azure release management",
+      "title": "Azure DevOps Fundamentals",
+      "subtitle": "Learn Azure Boards, Pipelines, Repos, and Artifacts",
       "category": "Azure Cloud & DevOps",
       "questionsCount": 10,
       "completed": false,
-      "available": false,
-      "questions": []
+      "available": true,
+      "questions": [
+        {
+          "id": 1,
+          "difficulty": "easy",
+          "text": "What is the primary purpose of Azure Pipelines?",
+          "options": [
+            "Continuous Integration and Continuous Delivery (CI/CD)",
+            "Tracking work items and bugs",
+            "Hosting Git repositories",
+            "Managing private npm packages"
+          ],
+          "answerHash": "ca772bde8f91751c0c8f27f05b1ea709860b8e3bbde4e139748a1f02fb65cd24",
+          "encodedAnswer": "Q29udGludW91cyBJbnRlZ3JhdGlvbiBhbmQgQ29udGludW91cyBEZWxpdmVyeSAoQ0kvQ0Qp",
+          "hint": "It automates the building, testing, and deployment of your code."
+        },
+        {
+          "id": 2,
+          "difficulty": "easy",
+          "text": "Which Azure DevOps service is used for agile project management and work tracking?",
+          "options": [
+            "Azure Test Plans",
+            "Azure Artifacts",
+            "Azure Boards",
+            "Azure Repos"
+          ],
+          "answerHash": "c1bea340cbea5a2f101dcb26fc9c4a3c3063ba273d76381c74686ff77e2ef86f",
+          "encodedAnswer": "QXp1cmUgQm9hcmRz",
+          "hint": "Think Kanban boards, sprints, and backlogs."
+        },
+        {
+          "id": 3,
+          "difficulty": "easy",
+          "text": "What type of version control systems does Azure Repos support?",
+          "options": [
+            "Only Git",
+            "Only TFVC (Team Foundation Version Control)",
+            "Both Git and TFVC",
+            "Subversion (SVN) and Git"
+          ],
+          "answerHash": "e83cdec02a85ffd8a264db25112fcdaa46324c4f83cd438ae01a08b90195f72b",
+          "encodedAnswer": "Qm90aCBHaXQgYW5kIFRGVkM=",
+          "hint": "It supports both distributed and centralized Microsoft version control."
+        },
+        {
+          "id": 4,
+          "difficulty": "medium",
+          "text": "What format is primarily used to define Azure Pipelines as code?",
+          "options": [
+            "JSON",
+            "XML",
+            "YAML",
+            "TOML"
+          ],
+          "answerHash": "9b6e8abe425e34bba739e608f31cb1471f15af460fe6ae59b473e88aa904ebee",
+          "encodedAnswer": "WUFNTA==",
+          "hint": "It's the most common human-readable data serialization language used for CI/CD configurations."
+        },
+        {
+          "id": 5,
+          "difficulty": "medium",
+          "text": "What is an Azure DevOps \"Agent\"?",
+          "options": [
+            "Computing infrastructure that runs your pipeline jobs",
+            "A project manager tracking progress",
+            "A security scanner",
+            "A billing entity"
+          ],
+          "answerHash": "2ea0e309eeb35f91cb4ce03868405d357bca1d6ffeda37fc5582597ea4a5929e",
+          "encodedAnswer": "Q29tcHV0aW5nIGluZnJhc3RydWN0dXJlIHRoYXQgcnVucyB5b3VyIHBpcGVsaW5lIGpvYnM=",
+          "hint": "It's the machine (Microsoft-hosted or self-hosted) that executes your build scripts."
+        },
+        {
+          "id": 6,
+          "difficulty": "medium",
+          "text": "Which service in Azure DevOps allows you to create, host, and share packages like npm, NuGet, and Maven?",
+          "options": [
+            "Azure Repos",
+            "Azure Pipelines",
+            "Azure Artifacts",
+            "Azure Container Registry"
+          ],
+          "answerHash": "03431c2b7bf12f25bc7c94f66ca51687b7a7b0f6b6006639740b0ff0411ed6b8",
+          "encodedAnswer": "QXp1cmUgQXJ0aWZhY3Rz",
+          "hint": "Think of it as a private package manager repository."
+        },
+        {
+          "id": 7,
+          "difficulty": "medium",
+          "text": "What is a Pipeline \"Stage\" in Azure Pipelines?",
+          "options": [
+            "A specific build script command",
+            "A logical boundary in the pipeline (e.g., Build, Test, Deploy to Prod)",
+            "A single virtual machine",
+            "A code repository branch"
+          ],
+          "answerHash": "b567f71c2a1433d82452080d3fae35012d0c1500b432f94a70b72ec28fd1fac9",
+          "encodedAnswer": "QSBsb2dpY2FsIGJvdW5kYXJ5IGluIHRoZSBwaXBlbGluZSAoZS5nLiwgQnVpbGQsIFRlc3QsIERlcGxveSB0byBQcm9kKQ==",
+          "hint": "It's used to organize pipeline execution into phases, often requiring approvals to move between them."
+        },
+        {
+          "id": 8,
+          "difficulty": "hard",
+          "text": "What feature allows you to pause a pipeline execution until a human reviews and allows it to proceed?",
+          "options": [
+            "Agent Delays",
+            "Pipeline Gates",
+            "Approvals and Checks",
+            "Manual Triggers"
+          ],
+          "answerHash": "0a3a97a6da2c23a5c611ee669b40ceca604a3df299e5186232b61fd44b5de6e9",
+          "encodedAnswer": "QXBwcm92YWxzIGFuZCBDaGVja3M=",
+          "hint": "Typically configured on an Environment before deploying to Production."
+        },
+        {
+          "id": 9,
+          "difficulty": "hard",
+          "text": "Which of the following is NOT a native Work Item type in the default Agile process in Azure Boards?",
+          "options": [
+            "Epic",
+            "Feature",
+            "User Story",
+            "Sprint"
+          ],
+          "answerHash": "fd04788626e5f87b3b22b2b855bddaae2f1ee43956232d2fa57c5afa7d3f09b9",
+          "encodedAnswer": "U3ByaW50",
+          "hint": "The first three represent work, whereas the fourth is a timebox (iteration)."
+        },
+        {
+          "id": 10,
+          "difficulty": "hard",
+          "text": "How does Azure DevOps handle secrets and sensitive configuration values in Pipelines?",
+          "options": [
+            "Storing them in plain text in YAML",
+            "Using Pipeline Variable Groups linked to Azure Key Vault",
+            "Emailing them to administrators",
+            "Disabling secrets entirely"
+          ],
+          "answerHash": "ec638b1a6daf10dbe8a6299ef086248e3bb3a490953e8ff32b85f41a32a0cc58",
+          "encodedAnswer": "VXNpbmcgUGlwZWxpbmUgVmFyaWFibGUgR3JvdXBzIGxpbmtlZCB0byBBenVyZSBLZXkgVmF1bHQ=",
+          "hint": "It integrates with Azure's native cryptographic storage service."
+        }
+      ]
     },
     "azure-fundamentals": {
       "id": "azure-fundamentals",
@@ -448,8 +815,149 @@ window.QUIZ_CATALOG = {
       "category": "Google Cloud Platform (GCP)",
       "questionsCount": 10,
       "completed": false,
-      "available": false,
-      "questions": []
+      "available": true,
+      "questions": [
+        {
+          "id": 1,
+          "difficulty": "easy",
+          "text": "What is the primary IaaS (Infrastructure as a Service) offering in Google Cloud Platform?",
+          "options": [
+            "Google Compute Engine",
+            "Google App Engine",
+            "Google Cloud Storage",
+            "Cloud Run"
+          ],
+          "answerHash": "b4496e12b08e84ececbf8ed1ab5b0c1c3030ae0f57f1118fe4a6ee062f0ae9e4",
+          "encodedAnswer": "R29vZ2xlIENvbXB1dGUgRW5naW5l",
+          "hint": "It provides scalable virtual machines."
+        },
+        {
+          "id": 2,
+          "difficulty": "easy",
+          "text": "Which GCP service is designed for serverless, fully managed container execution?",
+          "options": [
+            "Google Kubernetes Engine",
+            "Cloud Run",
+            "Compute Engine",
+            "Cloud Functions"
+          ],
+          "answerHash": "aa92dcab6bc705126d6d723acb9c8ba33d4e4a8e06b9e1b40dddcdb9748c538a",
+          "encodedAnswer": "Q2xvdWQgUnVu",
+          "hint": "It runs stateless containers on a fully managed environment."
+        },
+        {
+          "id": 3,
+          "difficulty": "easy",
+          "text": "What is Google Cloud's fully managed, serverless data warehouse?",
+          "options": [
+            "Cloud SQL",
+            "Cloud Spanner",
+            "BigQuery",
+            "Cloud Storage"
+          ],
+          "answerHash": "0871a590f805e5cdce7e4dd64a8d3890dd807addffc45615fdcddd0cfe68f0bd",
+          "encodedAnswer": "QmlnUXVlcnk=",
+          "hint": "It allows super-fast SQL queries on massive datasets."
+        },
+        {
+          "id": 4,
+          "difficulty": "medium",
+          "text": "How does GCP organize resources hierarchically?",
+          "options": [
+            "Organization -> Folders -> Projects -> Resources",
+            "Projects -> Folders -> Organization -> Resources",
+            "Organization -> Projects -> Resources -> Folders",
+            "Regions -> Zones -> Projects -> Resources"
+          ],
+          "answerHash": "dd364afe39d4f25e915764b0649e5ae6b3446c786755b4faad97887dec6900ef",
+          "encodedAnswer": "T3JnYW5pemF0aW9uIC0+IEZvbGRlcnMgLT4gUHJvamVjdHMgLT4gUmVzb3VyY2Vz",
+          "hint": "Projects sit below folders and above individual resources."
+        },
+        {
+          "id": 5,
+          "difficulty": "medium",
+          "text": "Which database service provides horizontal scaling, strong consistency, and relational semantics globally?",
+          "options": [
+            "Cloud SQL",
+            "Cloud Spanner",
+            "Bigtable",
+            "Firestore"
+          ],
+          "answerHash": "e4cc4fd25783cd653fde98e4505141f96f77443f87021d08b1f681efa9cec31c",
+          "encodedAnswer": "Q2xvdWQgU3Bhbm5lcg==",
+          "hint": "It's the only enterprise-grade, globally-distributed, and strongly consistent database service built for the cloud."
+        },
+        {
+          "id": 6,
+          "difficulty": "medium",
+          "text": "What is the default global load balancing service for HTTP(S) traffic in GCP?",
+          "options": [
+            "Network Load Balancer",
+            "HTTP(S) Load Balancing",
+            "Cloud CDN",
+            "Internal Load Balancer"
+          ],
+          "answerHash": "4f70b046c600dcea3d0ec68e4d2f07717fab4b254426eaca33302b4593d2ab25",
+          "encodedAnswer": "SFRUUChTKSBMb2FkIEJhbGFuY2luZw==",
+          "hint": "It distributes web traffic across multiple regions automatically."
+        },
+        {
+          "id": 7,
+          "difficulty": "medium",
+          "text": "What is the difference between standard and nearline storage classes in Cloud Storage?",
+          "options": [
+            "Standard is for archival, nearline is for frequent access",
+            "Standard is for frequent access, nearline is for data accessed less than once a month",
+            "Nearline is faster than standard",
+            "Standard is multi-regional only, nearline is regional only"
+          ],
+          "answerHash": "1ae3484203d17d98cee87860061ee0ce660d5f70149d22fc09da33779a06bdac",
+          "encodedAnswer": "U3RhbmRhcmQgaXMgZm9yIGZyZXF1ZW50IGFjY2VzcywgbmVhcmxpbmUgaXMgZm9yIGRhdGEgYWNjZXNzZWQgbGVzcyB0aGFuIG9uY2UgYSBtb250aA==",
+          "hint": "Nearline is slightly cheaper for storage but incurs retrieval costs."
+        },
+        {
+          "id": 8,
+          "difficulty": "hard",
+          "text": "Which of the following is true about VPC networks in GCP compared to AWS?",
+          "options": [
+            "GCP VPCs are regional, AWS VPCs are global",
+            "GCP VPCs are global resources, AWS VPCs are regional",
+            "Both are global resources",
+            "Both are regional resources"
+          ],
+          "answerHash": "14b88ea40500b711a33e458ed42ebcc1a0d7637ca1bbc7bf1b6b63fb3aa012d6",
+          "encodedAnswer": "R0NQIFZQQ3MgYXJlIGdsb2JhbCByZXNvdXJjZXMsIEFXUyBWUENzIGFyZSByZWdpb25hbA==",
+          "hint": "In GCP, a single VPC can span multiple regions without peering."
+        },
+        {
+          "id": 9,
+          "difficulty": "hard",
+          "text": "What is the primary purpose of Google Cloud Identity and Access Management (IAM) service accounts?",
+          "options": [
+            "To allow external users to log in",
+            "To provide an identity for an application or VM to interact with other GCP services",
+            "To manage billing accounts",
+            "To replace user passwords"
+          ],
+          "answerHash": "1c5b52456bf366b3e877a9bac9c0083af13325a8b05c635d91c3324e2e22251f",
+          "encodedAnswer": "VG8gcHJvdmlkZSBhbiBpZGVudGl0eSBmb3IgYW4gYXBwbGljYXRpb24gb3IgVk0gdG8gaW50ZXJhY3Qgd2l0aCBvdGhlciBHQ1Agc2VydmljZXM=",
+          "hint": "It's an identity that belongs to your application or virtual machine, not an individual end user."
+        },
+        {
+          "id": 10,
+          "difficulty": "hard",
+          "text": "Which GCP service provides a fully managed, Apache Kafka-compatible messaging service?",
+          "options": [
+            "Cloud Tasks",
+            "Eventarc",
+            "RabbitMQ",
+            "Pub/Sub"
+          ],
+          "answerHash": "6859e7b3318a3ee764967db6b1591621939c6b297de0afd19efcfb9bba25fffd",
+          "encodedAnswer": "UHViL1N1Yg==",
+          "hint": "It's an asynchronous messaging service designed for streaming analytics and data integration pipelines."
+        }
+      ]
     }
   }
 };

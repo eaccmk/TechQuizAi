@@ -4,8 +4,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TechQuizAi - Master Cloud Computing & AI</title>
+    <meta name="description" content="Master Tech Concepts with free certifications. Explore interactive quizzes covering AI, MCP, LLM training, Cloud Computing basics, fundamentals, and knowledge to boost your career.">
+    <meta name="keywords" content="free, certifications, AI, MCP, LLM, training, concepts, basics, fundamentals, learn, knowledge, cloud computing, data science, tech quizzes">
+    <title>TechQuizAi - Free Certifications & Training in AI, MCP, LLM & Cloud Basics</title>
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#7c3aed">
+    
+    <!-- Open Graph / Social Sharing -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://techquizai.netlify.app/">
+    <meta property="og:title" content="TechQuizAi - Free Certifications & Training in AI, MCP, LLM & Cloud Basics">
+    <meta property="og:description" content="Master Tech Concepts with free certifications. Explore interactive quizzes covering AI, MCP, LLM training, Cloud Computing basics, fundamentals, and knowledge to boost your career.">
+    <meta property="og:image" content="https://techquizai.netlify.app/assets/favicon.png">
+    
+    <!-- Twitter Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://techquizai.netlify.app/">
+    <meta name="twitter:title" content="TechQuizAi - Free Certifications & Training in AI, MCP, LLM & Cloud Basics">
+    <meta name="twitter:description" content="Master Tech Concepts with free certifications. Explore interactive quizzes covering AI, MCP, LLM training, Cloud Computing basics, fundamentals, and knowledge to boost your career.">
+    <meta name="twitter:image" content="https://techquizai.netlify.app/assets/favicon.png">
+
+    <link rel="canonical" href="https://techquizai.netlify.app/">
     <link rel="icon" type="image/png" href="assets/favicon.png">
+    <link rel="apple-touch-icon" href="assets/favicon.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="src/style.css">
     <script src="src/config.js"></script>
@@ -25,7 +46,8 @@
             </a>
 
             <div class="search-bar" role="search">
-                <input type="text" id="searchInput" placeholder="Search quizzes.." aria-label="Search quizzes by title or category" autocomplete="off">
+                <input type="text" id="searchInput" placeholder="Search quizzes.."
+                    aria-label="Search quizzes by title or category" autocomplete="off">
                 <button class="search-clear hidden" id="searchClearBtn" aria-label="Clear search input">✕</button>
                 <span class="search-icon" aria-hidden="true">🔍</span>
             </div>
@@ -39,8 +61,8 @@
 
     <!-- Hero Section -->
     <section class="hero" role="region" aria-label="Introduction">
-        <h1 id="heroTitle">Master Cloud Computing, One Quiz at a Time</h1>
-        <p id="heroSubtitle">Learn Cloud fundamentals, AI, LLM, Agents, Eval, RAG, MCP through interactive quizzes. No fluff, just concepts that stick.</p>
+        <h1 id="heroTitle">Master Tech Concepts, One Quiz at a Time</h1>
+        <p id="heroSubtitle">Interactive quizzes in Cloud Computing, AI/ML, and Data Science designed for Developers, AI Engineers, QA/SDETs, DevRels, and Data Scientists.</p>
     </section>
 
     <!-- Main Quiz Catalog Container -->
@@ -56,7 +78,8 @@
             <form name="signup" method="POST" data-netlify="true" netlify-honeypot="bot-field" id="signupForm">
                 <div class="modal-icon" aria-hidden="true">🚀</div>
                 <h2 id="signupTitle">Join TechQuizAi Free</h2>
-                <p style="color: var(--text-secondary); font-size: 14px; margin-bottom: 20px;">Sign-up to get updates about new quizzes in your inbox!</p>
+                <p style="color: var(--text-secondary); font-size: 14px; margin-bottom: 20px;">Sign-up to get updates
+                    about new quizzes in your inbox!</p>
 
                 <input type="hidden" name="form-name" value="signup" />
                 <p class="hidden" style="display:none;">
@@ -65,12 +88,14 @@
 
                 <div class="form-field">
                     <label for="signupName">Full Name</label>
-                    <input type="text" id="signupName" name="entry.198446647" placeholder="e.g. Jane Doe" required autocomplete="name">
+                    <input type="text" id="signupName" name="entry.198446647" placeholder="e.g. Jane Doe" required
+                        autocomplete="name">
                 </div>
 
                 <div class="form-field">
                     <label for="signupEmail">Email Address</label>
-                    <input type="email" id="signupEmail" name="entry.1813684147" placeholder="jane@example.com" required autocomplete="email">
+                    <input type="email" id="signupEmail" name="entry.1813684147" placeholder="jane@example.com" required
+                        autocomplete="email">
                 </div>
 
                 <div class="modal-actions">
@@ -81,7 +106,9 @@
 
             <div class="signup-success hidden" id="signupSuccess" style="display: none;">
                 <div class="modal-icon" aria-hidden="true" style="font-size: 48px; margin-bottom: 16px;">🎉</div>
-                <p style="font-size: 16px; font-weight: 600; color: var(--text-primary); margin-bottom: 24px; line-height: 1.5;">Thank you for your interest in TechQuizAi! Your response has been submitted successfully.</p>
+                <p
+                    style="font-size: 16px; font-weight: 600; color: var(--text-primary); margin-bottom: 24px; line-height: 1.5;">
+                    Thank you for your interest in TechQuizAi! Your response has been submitted successfully.</p>
                 <button type="button" class="btn-modal btn-confirm" id="closeSuccessBtn">Got it!</button>
             </div>
         </div>
@@ -107,7 +134,8 @@
     <!-- Cookie Consent Banner -->
     <div class="cookie-banner" id="cookieBanner" role="region" aria-label="Cookie consent">
         <div class="cookie-content">
-            <p>We use minimal cookies and Google Analytics to collect anonymous usage data to improve TechQuizAi. You can Accept or Reject non-essential cookies.</p>
+            <p>We use minimal cookies and Google Analytics to collect anonymous usage data to improve TechQuizAi. You
+                can Accept or Reject non-essential cookies.</p>
             <div class="cookie-actions">
                 <button class="btn-cookie btn-reject" id="rejectCookies">Reject All</button>
                 <button class="btn-cookie btn-standard" id="acceptCookies">Accept Cookies</button>
@@ -119,11 +147,15 @@
     <footer class="footer" role="contentinfo">
         <div class="footer-container">
             <div class="footer-nav-links">
-                <a href="https://www.linkedin.com/in/millankaul" target="_blank" rel="noopener" aria-label="LinkedIn Profile"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
-                <a href="https://github.com/eaccmk" target="_blank" rel="noopener" aria-label="GitHub Profile"><i class="fa-brands fa-github"></i> GitHub</a>
-                <a href="https://qualitywithmillan.github.io/" target="_blank" rel="noopener" aria-label="Learn More Blog"><i class="fa-solid fa-book-open"></i> Learn More</a>
+                <a href="https://www.linkedin.com/in/millankaul" target="_blank" rel="noopener"
+                    aria-label="LinkedIn Profile"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
+                <a href="https://github.com/eaccmk" target="_blank" rel="noopener" aria-label="GitHub Profile"><i
+                        class="fa-brands fa-github"></i> GitHub</a>
+                <a href="https://qualitywithmillan.github.io/" target="_blank" rel="noopener"
+                    aria-label="Learn More Blog"><i class="fa-solid fa-book-open"></i> Learn More</a>
                 <a href="disclaimer.html"><i class="fa-solid fa-scale-balanced"></i> Terms & Disclaimer</a>
-                <button class="btn-footer-link" id="contactUsBtn"><i class="fa-solid fa-envelope"></i> Contact Us</button>
+                <button class="btn-footer-link" id="contactUsBtn"><i class="fa-solid fa-envelope"></i> Contact
+                    Us</button>
             </div>
 
             <p class="footer-copyright" id="footerCopyright">
@@ -131,7 +163,8 @@
             </p>
 
             <p class="footer-disclaimer-note">
-                TechQuizAi is an independent tool built for fun to help users brush up skills before technical interviews. Not affiliated with AWS, Azure, GCP, or official vendor certifications.
+                TechQuizAi is an independent tool built for fun to help users brush up skills before technical
+                interviews. Not affiliated with AWS, Azure, GCP, or official vendor certifications.
             </p>
         </div>
     </footer>

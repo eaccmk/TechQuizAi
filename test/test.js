@@ -71,7 +71,7 @@ runTest('Subfolder Markdown Quiz Files Parsing & Schema Test', () => {
             const filePath = path.join(dirPath, file);
             if (fs.statSync(filePath).isDirectory()) {
                 results = results.concat(getQuizFiles(filePath));
-            } else if (file.endsWith('.md')) {
+            } else if (file.endsWith('.md') && file !== 'AGENTS.md' && file !== 'AGENT.md') {
                 results.push(filePath);
             }
         });

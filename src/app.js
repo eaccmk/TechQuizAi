@@ -58,9 +58,12 @@ function renderCardHtml(quiz) {
     <article class="quiz-card ${!quiz.available ? 'disabled' : ''}" data-id="${quiz.id}" tabindex="${quiz.available ? '0' : '-1'}" aria-disabled="${!quiz.available}">
       <div class="quiz-card-top">
         <span class="quiz-icon" aria-hidden="true">${quiz.icon || '📝'}</span>
-        ${isCompleted
-            ? '<span class="badge-completed" aria-label="Status: Completed">✓ Completed</span>'
-            : (!quiz.available ? '<span class="badge-coming-soon" aria-label="Status: Coming Soon">⏳ Coming Soon</span>' : '')}
+        <div class="quiz-card-top-actions" style="display: flex; gap: 8px; align-items: center; position: relative;">
+          ${quiz.available ? `<button class="btn-share-icon" data-action="share" data-id="${quiz.id}" aria-label="Share ${escapeHtml(quiz.title)}" title="Share Quiz"><i class="fa-solid fa-share-nodes"></i></button>` : ''}
+          ${isCompleted
+              ? '<span class="badge-completed" aria-label="Status: Completed">✓ Completed</span>'
+              : (!quiz.available ? '<span class="badge-coming-soon" aria-label="Status: Coming Soon">⏳ Coming Soon</span>' : '')}
+        </div>
       </div>
       <h3 class="quiz-title">${escapeHtml(quiz.title)}</h3>
       <p class="quiz-subtitle">${escapeHtml(quiz.subtitle)}</p>
@@ -133,11 +136,23 @@ function renderQuizzes(list, searchTerm = '') {
     let html = '';
     sortedCategories.forEach(catName => {
         const catQuizzes = categoryMap[catName];
+        
+        // Sort: available (live) first, then alphabetical by title
+        catQuizzes.sort((a, b) => {
+            if (a.available !== b.available) {
+                return a.available ? -1 : 1;
+            }
+            return a.title.localeCompare(b.title);
+        });
+
         const headingId = `cat-${catName.replace(/[^a-zA-Z0-9]/g, '')}`;
         html += `
         <section class="category-block" aria-labelledby="${headingId}">
-            <div class="category-header">
-                <h2 id="${headingId}">${escapeHtml(catName)}</h2>
+            <div class="category-header" onclick="this.parentElement.classList.toggle('collapsed')">
+                <div class="header-left">
+                    <i class="fa-solid fa-chevron-down toggle-icon"></i>
+                    <h2 id="${headingId}">${escapeHtml(catName)}</h2>
+                </div>
                 <span class="quiz-count">${catQuizzes.length} quiz${catQuizzes.length === 1 ? '' : 'zes'}</span>
             </div>
             <div class="category-grid">
@@ -426,6 +441,7 @@ function proceedToQuiz() {
     localStorage.setItem(userNameKey, enteredName);
     closeNameModal();
     if (targetQuizId) {
+        sessionStorage.setItem('techquizai_current_quiz', targetQuizId);
         window.location.href = `quiz.html?id=${targetQuizId}`;
     }
 }
@@ -461,6 +477,42 @@ if (quizGrid) {
         } else if (action === 'certificate') {
             const savedName = localStorage.getItem(userNameKey) || defaultUser;
             generateCertificate(10, savedName);
+        } else if (action === 'share') {
+            e.stopPropagation();
+            const shareUrl = window.location.origin + window.location.pathname.replace('index.html', '') + 'quiz.html?id=' + quizId + '&ref=TechQuizAi-tile';
+            
+            navigator.clipboard.writeText(shareUrl).then(() => {
+                const tooltip = document.createElement('div');
+                tooltip.className = 'share-tooltip';
+                tooltip.textContent = 'Link copied to clipboard!';
+                
+                // Remove any existing tooltips on this button
+                const existing = btn.parentNode.querySelectorAll('.share-tooltip');
+                existing.forEach(t => t.remove());
+                
+                btn.parentNode.appendChild(tooltip);
+                
+                // Trigger animation
+                requestAnimationFrame(() => {
+                    tooltip.classList.add('show');
+                });
+                
+                setTimeout(() => {
+                    tooltip.classList.remove('show');
+                    setTimeout(() => tooltip.remove(), 300);
+                }, 2000);
+            }).catch(err => {
+                console.error('Failed to copy share link: ', err);
+            });
+
+            if (window.gtag) {
+                gtag('event', 'quiz_shared', { quiz_id: quizId });
+            } else if (window.dataLayer) {
+                window.dataLayer.push({
+                    event: 'quiz_shared',
+                    quiz_id: quizId
+                });
+            }
         }
     });
 

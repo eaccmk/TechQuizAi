@@ -23,4 +23,5 @@ Guidelines for developers and AI agents adding features or editing code in TechQ
 - [ ] Verify dark mode & light mode rendering
 - [ ] Verify search clear button (`✕`) resets search text
 - [ ] Verify certificate downloads with user personalization name
+- [ ] Verify share link copies to clipboard and direct launch name modal functions correctly
 - [ ] Confirm no console errors on page load
