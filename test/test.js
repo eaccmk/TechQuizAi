@@ -44,7 +44,9 @@ runTest('Core File & Directory Structure Integrity Check', () => {
         'src/quizzes-data.js',
         'src/quizzes.json',
         'assets/favicon.png',
-        'scripts/build-quizzes.js'
+        'scripts/build-quizzes.js',
+        'LICENSE',
+        'CODE_OF_CONDUCT.md'
     ];
 
     requiredFiles.forEach(file => {
