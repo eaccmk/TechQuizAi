@@ -126,6 +126,35 @@ TechQuizAi/
 4. Run `npm run build` to update `src/quizzes.json` and `src/quizzes-data.js`.
 5. Run `npm test` to verify your new quiz passes schema checks.
 
+
+## netlify CLI commands
+
+```bash
+# Login to Netlify
+npx netlify login
+
+# Run only builds ( Dry run of build )
+npx netlify build --dry
+
+# locally build and serve
+npx netlify serve
+
+# Deploy to non prod site with alias
+netlify deploy --alias=V3
+
+# show env variable secrets in the project
+npx netlify env:list --plain
+
+# Deploy to a non-prod site
+npx netlify deploy --dir=./dist
+
+# Deploy to the production site
+npx netlify deploy --dir=./dist --prod
+
+# Deploy to a specific site
+npx netlify deploy --dir=./dist --site=[SITE_ID]
+```
+
 ---
 
 ## 📄 License & Disclaimer

@@ -18,5 +18,8 @@
     "netlify"
   ],
   "author": "TechQuizAi",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "netlify-cli": "^23.13.5"
+  }
 }

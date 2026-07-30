@@ -6,7 +6,7 @@ const CONFIG = {
     logoIcon: '☁️',
     copyrightYear: 2026,
     copyrightText: 'Built for learners, by learners.',
-    analyticsId: "",
+    analyticsId: "****************BTTB",
     
     urls: {
         siteUrl: 'https://techquizai.netlify.app/',
@@ -16,7 +16,7 @@ const CONFIG = {
         linkedin: 'https://www.linkedin.com/in/millankaul',
         github: 'https://github.com/eaccmk',
         blog: 'https://qualitywithmillan.github.io/',
-        googleFormUrl: ""
+        googleFormUrl: "****************onse"
     },
     
     storageKeys: {
