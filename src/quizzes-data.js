@@ -128,6 +128,11 @@ window.QUIZ_CATALOG = {
       "title": "Evaluation (Evals)",
       "subtitle": "Understand AI evaluation frameworks, LLM benchmarks, and scoring metrics",
       "category": "Artificial Intelligence (AI) Foundations",
+      "skills": [
+        "AI",
+        "ML",
+        "LLM"
+      ],
       "questionsCount": 10,
       "completed": false,
       "available": false,
@@ -139,6 +144,11 @@ window.QUIZ_CATALOG = {
       "title": "LLM Fundamentals",
       "subtitle": "Learn Large Language Models, prompt engineering, and GenAI concepts",
       "category": "Artificial Intelligence (AI) Foundations",
+      "skills": [
+        "AI",
+        "LLM",
+        "Prompt Engineering"
+      ],
       "questionsCount": 10,
       "completed": false,
       "available": false,
@@ -150,6 +160,11 @@ window.QUIZ_CATALOG = {
       "title": "MCP Fundamentals (v2)",
       "subtitle": "Master the Model Context Protocol, including the latest July 2026 v2 release",
       "category": "Artificial Intelligence (AI) Foundations",
+      "skills": [
+        "MCP",
+        "AI",
+        "LLM tools"
+      ],
       "questionsCount": 10,
       "completed": false,
       "available": true,
@@ -302,6 +317,11 @@ window.QUIZ_CATALOG = {
       "title": "AWS Basics",
       "subtitle": "Master the fundamentals of Amazon Web Services",
       "category": "AWS Fundamentals",
+      "skills": [
+        "S3",
+        "EC2",
+        "IAM"
+      ],
       "questionsCount": 10,
       "completed": false,
       "available": true,
@@ -454,6 +474,11 @@ window.QUIZ_CATALOG = {
       "title": "EC2 & Compute",
       "subtitle": "Learn virtual servers and compute resources",
       "category": "AWS Fundamentals",
+      "skills": [
+        "AWS",
+        "EC2",
+        "Compute"
+      ],
       "questionsCount": 10,
       "completed": false,
       "available": false,
@@ -465,6 +490,11 @@ window.QUIZ_CATALOG = {
       "title": "IAM Concepts",
       "subtitle": "Understand Identity and Access Management",
       "category": "AWS Fundamentals",
+      "skills": [
+        "AWS",
+        "IAM",
+        "Security"
+      ],
       "questionsCount": 10,
       "completed": false,
       "available": true,
@@ -617,6 +647,11 @@ window.QUIZ_CATALOG = {
       "title": "Azure DevOps Fundamentals",
       "subtitle": "Learn Azure Boards, Pipelines, Repos, and Artifacts",
       "category": "Azure Cloud & DevOps",
+      "skills": [
+        "Azure Compute",
+        "Azure Storage",
+        "Azure Networking"
+      ],
       "questionsCount": 10,
       "completed": false,
       "available": true,
@@ -769,6 +804,11 @@ window.QUIZ_CATALOG = {
       "title": "Azure Fundamentals",
       "subtitle": "Explore Microsoft Azure core cloud services and architecture",
       "category": "Azure Cloud & DevOps",
+      "skills": [
+        "Azure Boards",
+        "Azure Pipelines",
+        "Azure Artifacts"
+      ],
       "questionsCount": 10,
       "completed": false,
       "available": false,
@@ -780,6 +820,11 @@ window.QUIZ_CATALOG = {
       "title": "Azure Security & Identity",
       "subtitle": "Learn Microsoft Entra ID, Key Vault, and Azure Security Center",
       "category": "Azure Cloud & DevOps",
+      "skills": [
+        "Microsoft Entra ID",
+        "Azure Key Vault",
+        "Conditional Access"
+      ],
       "questionsCount": 10,
       "completed": false,
       "available": false,
@@ -791,6 +836,11 @@ window.QUIZ_CATALOG = {
       "title": "GCP Cloud Architecture",
       "subtitle": "Understand GCP VPC networking, IAM security, and Cloud Storage",
       "category": "Google Cloud Platform (GCP)",
+      "skills": [
+        "VPC Networking",
+        "IAM",
+        "Cloud Storage"
+      ],
       "questionsCount": 10,
       "completed": false,
       "available": false,
@@ -802,6 +852,11 @@ window.QUIZ_CATALOG = {
       "title": "GCP Data & AI",
       "subtitle": "Master BigQuery, Vertex AI, and Google Cloud data engineering",
       "category": "Google Cloud Platform (GCP)",
+      "skills": [
+        "BigQuery",
+        "Vertex AI",
+        "Dataflow"
+      ],
       "questionsCount": 10,
       "completed": false,
       "available": false,
@@ -813,6 +868,11 @@ window.QUIZ_CATALOG = {
       "title": "GCP Fundamentals",
       "subtitle": "Learn Google Cloud infrastructure, Compute Engine, and BigQuery",
       "category": "Google Cloud Platform (GCP)",
+      "skills": [
+        "Compute Engine",
+        "Cloud Storage",
+        "BigQuery"
+      ],
       "questionsCount": 10,
       "completed": false,
       "available": true,

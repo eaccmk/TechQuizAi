@@ -5,5 +5,6 @@ icon: 🤖
 subtitle: Master BigQuery, Vertex AI, and Google Cloud data engineering
 category: Google Cloud Platform (GCP)
 available: false
+skills: BigQuery, Vertex AI, Dataflow
 questions: 10
 ---

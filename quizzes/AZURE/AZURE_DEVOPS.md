@@ -4,6 +4,7 @@ title: Azure DevOps Fundamentals
 icon: ♾️
 subtitle: Learn Azure Boards, Pipelines, Repos, and Artifacts
 category: Azure Cloud & DevOps
+skills: Azure Compute, Azure Storage, Azure Networking
 available: true
 ---
 

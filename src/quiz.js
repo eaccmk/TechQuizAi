@@ -2,6 +2,7 @@
 
 let quizTitle = 'AWS Basics';
 let quizId = 'aws-basics';
+let quizSkills = [];
 let questions = [];
 let currentIndex = 0;
 let userAnswers = [];
@@ -104,9 +105,15 @@ async function parseMarkdownQuizClient(mdContent) {
         }
     }
 
+    let parsedSkills = [];
+    if (metadata.skills) {
+        parsedSkills = metadata.skills.split(',').map(s => s.trim());
+    }
+
     return {
         id: metadata.id,
         title: metadata.title,
+        skills: parsedSkills,
         questions: parsedQuestions
     };
 }
@@ -152,14 +159,17 @@ async function initQuiz() {
         }
     }
 
-    if (qData && qData.questions && qData.questions.length > 0) {
-        quizTitle = qData.title || quizTitle;
-        document.title = `${CONFIG ? CONFIG.appName : 'TechQuizAi'} - ${quizTitle}`;
-
+    if (qData) {
+        quizTitle = qData.title || 'Tech Quiz';
+        quizSkills = qData.skills || [];
         questions = qData.questions.map(q => ({
             ...q,
             options: shuffleArray(q.options)
         }));
+        document.title = `${quizTitle} | ${typeof CONFIG !== 'undefined' ? CONFIG.appName : 'TechQuizAi'}`;
+        
+        const titleEl = document.getElementById('quizTitle');
+        if (titleEl) titleEl.textContent = quizTitle;
     }
 
     if (questions.length === 0) {
@@ -561,7 +571,7 @@ async function calculateAndShowResults() {
 
     const savedName = localStorage.getItem(userNameKey) || defaultUser;
     const certBtn = document.getElementById('downloadCertBtn');
-    if (certBtn) certBtn.addEventListener('click', () => generateCertificate(correctCount, savedName, quizTitle));
+    if (certBtn) certBtn.addEventListener('click', () => generateCertificate(correctCount, savedName, quizTitle, '', quizSkills));
 
     const shareBtn = document.getElementById('shareBtn');
     if (shareBtn) shareBtn.addEventListener('click', () => shareAchievement(correctCount, totalQ));

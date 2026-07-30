@@ -5,6 +5,7 @@ icon: 🌈
 subtitle: Learn Google Cloud infrastructure, Compute Engine, and BigQuery
 category: Google Cloud Platform (GCP)
 available: true
+skills: Compute Engine, Cloud Storage, BigQuery
 ---
 
 ### Question 1
