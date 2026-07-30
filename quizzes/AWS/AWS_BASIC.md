@@ -4,6 +4,7 @@ title: AWS Basics
 icon: 🪣
 subtitle: Master the fundamentals of Amazon Web Services
 category: AWS Fundamentals
+skills: S3, EC2, IAM
 available: true
 ---
 

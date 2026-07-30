@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Certificate Test</title>
+    <style>
+        body { font-family: sans-serif; display: flex; flex-direction: column; align-items: center; background: #f0f0f0; padding: 2rem; }
+        canvas { box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); max-width: 100%; height: auto; }
+        button { margin: 1rem; padding: 0.5rem 1rem; font-size: 1rem; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <h1>Certificate Preview</h1>
+    <button onclick="previewCert()">Generate & Preview</button>
+    <div id="preview"></div>
+
+    <script>
+        // Mock CONFIG
+        const CONFIG = {
+            appName: 'TechQuizAi',
+            branding: {
+                primaryColor: '#7c3aed',
+                purpleAccent: '#a78bfa',
+                pinkAccent: '#f0abfc',
+                greenSuccess: '#22c55e'
+            }
+        };
+    </script>
+    <script src="../src/certificate.js"></script>
+    <script>
+        function previewCert() {
+            const previewDiv = document.getElementById('preview');
+            previewDiv.innerHTML = '';
+            
+            const originalCreateElement = document.createElement;
+            let capturedCanvas = null;
+            document.createElement = function(tagName) {
+                const el = originalCreateElement.call(document, tagName);
+                if (tagName.toLowerCase() === 'canvas') {
+                    capturedCanvas = el;
+                }
+                if (tagName.toLowerCase() === 'a') {
+                    return { click: () => {
+                        if (capturedCanvas) {
+                            previewDiv.appendChild(capturedCanvas);
+                        }
+                    }};
+                }
+                return el;
+            };
+
+            generateCertificate(100, 'Learner Name', 'AWS Basic');
+            document.createElement = originalCreateElement;
+        }
+        
+        window.onload = previewCert;
+    </script>
+</body>
+</html>

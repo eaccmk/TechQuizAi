@@ -55,6 +55,12 @@ The automated test suite in `test/test.js` validates code integrity, Markdown sc
 | **Answer Obfuscation SHA-256 Hash Matching** | `test/test.js` | Validates cryptographic hashing functions in `scripts/build-quizzes.js`, confirming deterministic SHA-256 output, 64-character hash length, and non-collision for incorrect inputs. |
 | **Dynamic 50% Passing Criteria Logic Test** | `test/test.js` | Validates dynamic passing threshold math (`Math.ceil(totalCount * 0.5)`), asserting that 5/10 passes (50%), 4/10 fails (40%), 3/5 passes (60%), and 2/5 fails (40%). |
 
+### 🎓 Local Certificate Design Preview
+
+To rapidly iterate on or preview certificate canvas designs locally without taking a full quiz:
+1. Open `test/test-cert.html` directly in your web browser.
+2. Click **Generate & Preview** to render the certificate canvas on-screen instantly.
+
 ---
 
 ## 📁 Repository Architecture
@@ -76,7 +82,8 @@ TechQuizAi/
 ├── scripts/
 │   └── build-quizzes.js # Compiles quizzes/ into src/ JSON/JS bundles & cleans legacy root files
 ├── test/
-│   └── test.js          # Automated test suite (npm test)
+│   ├── test.js          # Automated test suite (npm test)
+│   └── test-cert.html   # Local certificate design preview tool
 ├── src/
 │   ├── config.js        # Central branding, site URLs, GA4 ID, storage keys
 │   ├── app.js           # Dashboard rendering, search bar, wheel picker, GA4 & cookie consent
@@ -125,6 +132,35 @@ TechQuizAi/
    ```
 4. Run `npm run build` to update `src/quizzes.json` and `src/quizzes-data.js`.
 5. Run `npm test` to verify your new quiz passes schema checks.
+
+
+## netlify CLI commands
+
+```bash
+# Login to Netlify
+npx netlify login
+
+# Run only builds ( Dry run of build )
+npx netlify build --dry
+
+# locally build and serve
+npx netlify serve
+
+# Deploy to non prod site with alias
+netlify deploy --alias=V3
+
+# show env variable secrets in the project
+npx netlify env:list --plain
+
+# Deploy to a non-prod site
+npx netlify deploy --dir=./dist
+
+# Deploy to the production site
+npx netlify deploy --dir=./dist --prod
+
+# Deploy to a specific site
+npx netlify deploy --dir=./dist --site=[SITE_ID]
+```
 
 ---
 

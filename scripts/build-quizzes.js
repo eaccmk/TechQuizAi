@@ -80,12 +80,22 @@ function parseMarkdownQuiz(filePath) {
         });
     }
 
+    let skills = [];
+    if (metadata.skills) {
+        if (Array.isArray(metadata.skills)) {
+            skills = metadata.skills;
+        } else if (typeof metadata.skills === 'string') {
+            skills = metadata.skills.split(',').map(s => s.trim());
+        }
+    }
+
     return {
         id: metadata.id,
         icon: metadata.icon || '📝',
         title: metadata.title,
         subtitle: metadata.subtitle || '',
         category: metadata.category || 'AWS Fundamentals',
+        skills,
         questionsCount: isAvailable ? questions.length : (parseInt(metadata.questions) || 10),
         completed: false,
         available: isAvailable,

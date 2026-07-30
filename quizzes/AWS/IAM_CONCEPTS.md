@@ -4,6 +4,7 @@ title: IAM Concepts
 icon: 🔐
 subtitle: Understand Identity and Access Management
 category: AWS Fundamentals
+skills: AWS, IAM, Security
 available: true
 ---
 
