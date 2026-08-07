@@ -8,7 +8,11 @@ document.addEventListener('DOMContentLoaded', () => {
         const heroSubtitle = document.getElementById('heroSubtitle');
         const footerCopyright = document.getElementById('footerCopyright');
 
-        if (logoText) logoText.textContent = CONFIG.appName;
+        if (logoText) {
+            // Keep the (v3) markup in index.html, update app name if needed but preserve HTML structure
+            const v3Node = logoText.querySelector('span');
+            logoText.firstChild.textContent = CONFIG.appName + ' ';
+        }
         if (logoIcon) logoIcon.textContent = CONFIG.logoIcon;
         if (heroTitle) heroTitle.textContent = CONFIG.tagline;
         if (heroSubtitle) heroSubtitle.textContent = CONFIG.heroSubtitle;
@@ -23,9 +27,10 @@ let allQuizzes = [];
 
 const CATEGORY_ORDER = [
     'AWS Fundamentals',
-    'Artificial Intelligence (AI) Foundations',
+    'AI Foundations',
     'Google Cloud Platform (GCP)',
-    'Azure Cloud & DevOps'
+    'Azure Cloud & DevOps',
+    'QA / SDET'
 ];
 
 // Load quiz manifest from window.QUIZ_CATALOG or src/quizzes.json
@@ -52,6 +57,7 @@ function escapeHtml(str) {
     return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
 }
 
+
 function renderCardHtml(quiz) {
     const isCompleted = localStorage.getItem(`techquizai_completed_${quiz.id}`) === 'true' || quiz.completed;
     return `
@@ -59,10 +65,10 @@ function renderCardHtml(quiz) {
       <div class="quiz-card-top">
         <span class="quiz-icon" aria-hidden="true">${quiz.icon || '📝'}</span>
         <div class="quiz-card-top-actions" style="display: flex; gap: 8px; align-items: center; position: relative;">
-          ${quiz.available ? `<button class="btn-share-icon" data-action="share" data-id="${quiz.id}" aria-label="Share ${escapeHtml(quiz.title)}" title="Share Quiz"><i class="fa-solid fa-share-nodes"></i></button>` : ''}
           ${isCompleted
-              ? '<span class="badge-completed" aria-label="Status: Completed">✓ Completed</span>'
-              : (!quiz.available ? '<span class="badge-coming-soon" aria-label="Status: Coming Soon">⏳ Coming Soon</span>' : '')}
+            ? '<span class="badge-completed" aria-label="Status: Completed">✓ Completed</span>'
+            : (!quiz.available ? '<span class="badge-coming-soon" aria-label="Status: Coming Soon">⏳ Coming Soon</span>' : '')}
+          ${quiz.available ? `<button class="btn-share-icon" data-action="share" data-id="${quiz.id}" aria-label="Share ${escapeHtml(quiz.title)}" title="Share Quiz" style="order: 2;"><i class="fa-solid fa-share-nodes"></i></button>` : ''}
         </div>
       </div>
       <h3 class="quiz-title">${escapeHtml(quiz.title)}</h3>
@@ -73,10 +79,10 @@ function renderCardHtml(quiz) {
             ? `<button class="btn-disabled" disabled aria-disabled="true">Coming Soon</button>`
             : (isCompleted
                 ? `<div class="completed-actions">
-                     <button class="btn-retake" data-action="retake" data-id="${quiz.id}" aria-label="Retake ${escapeHtml(quiz.title)} quiz">Retake Quiz</button>
-                     <button class="btn-certificate" data-action="certificate" data-id="${quiz.id}" aria-label="Download certificate for ${escapeHtml(quiz.title)}">📥 Certificate</button>
+                     <button class="btn-certificate" data-action="certificate" data-id="${quiz.id}" aria-label="Download Certificate: ${escapeHtml(quiz.title)}"><i class="fa-solid fa-award"></i> Certificate</button>
+                     <button class="btn-start" data-action="retake" data-id="${quiz.id}" aria-label="Retake Quiz: ${escapeHtml(quiz.title)}">Retake Quiz</button>
                    </div>`
-                : `<button class="btn-start" data-action="start" data-id="${quiz.id}" aria-label="Start ${escapeHtml(quiz.title)} quiz">Start Quiz</button>`)}
+                : `<button class="btn-start" data-action="start" data-id="${quiz.id}" aria-label="Start Quiz: ${escapeHtml(quiz.title)}">Start Quiz</button>`)}
       </div>
     </article>
   `;
@@ -136,7 +142,7 @@ function renderQuizzes(list, searchTerm = '') {
     let html = '';
     sortedCategories.forEach(catName => {
         const catQuizzes = categoryMap[catName];
-        
+
         // Sort: available (live) first, then alphabetical by title
         catQuizzes.sort((a, b) => {
             if (a.available !== b.available) {
@@ -151,9 +157,8 @@ function renderQuizzes(list, searchTerm = '') {
             <div class="category-header" onclick="this.parentElement.classList.toggle('collapsed')">
                 <div class="header-left">
                     <i class="fa-solid fa-chevron-down toggle-icon"></i>
-                    <h2 id="${headingId}">${escapeHtml(catName)}</h2>
+                    <h2 id="${headingId}">${escapeHtml(catName)} <span style="font-size: 16px; font-weight: 500; opacity: 0.7; margin-left: 6px;">(${catQuizzes.length})</span></h2>
                 </div>
-                <span class="quiz-count">${catQuizzes.length} quiz${catQuizzes.length === 1 ? '' : 'zes'}</span>
             </div>
             <div class="category-grid">
                 ${catQuizzes.map(quiz => renderCardHtml(quiz)).join('')}
@@ -183,7 +188,7 @@ function initIosPicker(availableQuizzes) {
             const angle = diff * 32;
             const opacity = Math.max(0.15, 1 - Math.abs(diff) * 0.4);
             const scale = Math.max(0.75, 1 - Math.abs(diff) * 0.12);
-            
+
             item.style.transform = `rotateX(${-angle}deg) translateZ(${radius}px) scale(${scale})`;
             item.style.opacity = opacity;
 
@@ -446,6 +451,8 @@ function proceedToQuiz() {
     }
 }
 
+const closeNameModalBtn = document.getElementById('closeNameModalBtn');
+if (closeNameModalBtn) closeNameModalBtn.addEventListener('click', closeNameModal);
 if (cancelNameBtn) cancelNameBtn.addEventListener('click', closeNameModal);
 if (startQuizBtn) startQuizBtn.addEventListener('click', proceedToQuiz);
 if (userNameInput) {
@@ -480,23 +487,23 @@ if (quizGrid) {
         } else if (action === 'share') {
             e.stopPropagation();
             const shareUrl = window.location.origin + window.location.pathname.replace('index.html', '') + 'quiz.html?id=' + quizId + '&ref=TechQuizAi-tile';
-            
+
             navigator.clipboard.writeText(shareUrl).then(() => {
                 const tooltip = document.createElement('div');
                 tooltip.className = 'share-tooltip';
                 tooltip.textContent = 'Link copied to clipboard!';
-                
+
                 // Remove any existing tooltips on this button
                 const existing = btn.parentNode.querySelectorAll('.share-tooltip');
                 existing.forEach(t => t.remove());
-                
+
                 btn.parentNode.appendChild(tooltip);
-                
+
                 // Trigger animation
                 requestAnimationFrame(() => {
                     tooltip.classList.add('show');
                 });
-                
+
                 setTimeout(() => {
                     tooltip.classList.remove('show');
                     setTimeout(() => tooltip.remove(), 300);
@@ -527,73 +534,394 @@ if (quizGrid) {
     });
 }
 
-// Sign Up / Contact Us Modal Logic (Netlify Form & Optional Google Form Sync)
-const signUpBtn = document.getElementById('signUpBtn');
-const contactUsBtn = document.getElementById('contactUsBtn');
-const signupModal = document.getElementById('signupModal');
-const signupForm = document.getElementById('signupForm');
-const cancelSignupBtn = document.getElementById('cancelSignupBtn');
-const signupSuccess = document.getElementById('signupSuccess');
-const closeSuccessBtn = document.getElementById('closeSuccessBtn');
+// Passwordless Email OTP Authentication Logic
+const authHeaderContainer = document.getElementById('authHeaderContainer');
+const authModal = document.getElementById('authModal');
+const authEmail = document.getElementById('authEmail');
+const cancelAuthBtn = document.getElementById('cancelAuthBtn');
+const requestOtpBtn = document.getElementById('requestOtpBtn');
 
-function openSignupModal() {
-    if (signupForm) {
-        signupForm.reset();
-        signupForm.classList.remove('hidden');
-        signupForm.style.display = 'block';
-    }
-    if (signupSuccess) {
-        signupSuccess.classList.add('hidden');
-        signupSuccess.style.display = 'none';
-    }
-    if (signupModal) signupModal.classList.remove('hidden');
+const otpModal = document.getElementById('otpModal');
+const otpInputGroup = document.getElementById('otpInputGroup');
+const otpErrorText = document.getElementById('otpErrorText');
+const sentOtpEmailHighlight = document.getElementById('sentOtpEmailHighlight');
+const cancelOtpBtn = document.getElementById('cancelOtpBtn');
+const verifyOtpBtn = document.getElementById('verifyOtpBtn');
+
+const profileModal = document.getElementById('profileModal');
+const profileEmailVal = document.getElementById('profileEmailVal');
+const profileStatusVal = document.getElementById('profileStatusVal');
+const profileLoginVal = document.getElementById('profileLoginVal');
+const closeProfileBtn = document.getElementById('closeProfileBtn');
+const deleteAccountBtn = document.getElementById('deleteAccountBtn');
+
+// Base64 helper to obfuscate payloads traversing the network logs in clear text
+function obfuscate(str) {
+    return btoa(unescape(encodeURIComponent(str)));
 }
 
-if (signUpBtn) signUpBtn.addEventListener('click', openSignupModal);
-if (contactUsBtn) contactUsBtn.addEventListener('click', openSignupModal);
+function updateAuthUI() {
+    const token = localStorage.getItem('techquizai_auth_token');
+    const userJson = localStorage.getItem('techquizai_auth_user');
 
-if (cancelSignupBtn && signupModal) {
-    cancelSignupBtn.addEventListener('click', () => {
-        signupModal.classList.add('hidden');
-    });
-}
-
-if (closeSuccessBtn && signupModal) {
-    closeSuccessBtn.addEventListener('click', () => {
-        signupModal.classList.add('hidden');
-    });
-}
-
-if (signupForm) {
-    signupForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        const formData = new FormData(signupForm);
-
-        // 1. Instantly hide input form and show clean success screen inside modal
-        if (signupForm) {
-            signupForm.classList.add('hidden');
-            signupForm.style.display = 'none';
+    if (token && userJson) {
+        try {
+            const user = JSON.parse(userJson);
+            authHeaderContainer.innerHTML = `
+                <div style="display: flex; align-items: center; gap: 10px;">
+                    <div class="auth-profile-badge" style="cursor: pointer;" id="headerProfileBtn">
+                        <i class="fa-solid fa-user-check"></i>
+                        <span class="auth-user-email">${user.email}</span>
+                    </div>
+                    <button class="btn-signout" id="headerSignOutBtn">Sign Out</button>
+                </div>
+            `;
+            
+            // Wire profile and signout click events
+            document.getElementById('headerProfileBtn').addEventListener('click', openProfileModal);
+            document.getElementById('headerSignOutBtn').addEventListener('click', handleSignOut);
+        } catch (e) {
+            console.error('Error rendering auth UI state:', e);
+            handleSignOut();
         }
-        if (signupSuccess) {
-            signupSuccess.classList.remove('hidden');
-            signupSuccess.style.display = 'block';
-        }
+    } else {
+        authHeaderContainer.innerHTML = `
+            <button class="btn-signup" id="signUpBtn">Sign In</button>
+        `;
+        document.getElementById('signUpBtn').addEventListener('click', () => {
+            if (authModal) authModal.classList.remove('hidden');
+        });
+    }
+}
 
-        // 2. Submit to Netlify Forms endpoint via AJAX
-        fetch('/', {
+// Request OTP Flow
+async function handleRequestOtp() {
+    const email = authEmail.value.trim();
+    if (!email || !email.includes('@')) {
+        alert('Please enter a valid email address.');
+        return;
+    }
+
+    requestOtpBtn.disabled = true;
+    requestOtpBtn.textContent = 'Sending...';
+
+    try {
+        const payload = obfuscate(email);
+        const response = await fetch('/api/request-otp', {
             method: 'POST',
-            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-            body: new URLSearchParams(formData).toString()
-        }).catch(() => {});
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ payload })
+        });
+        
+        const data = await response.json();
+        
+        if (response.ok) {
+            sentOtpEmailHighlight.textContent = email;
+            if (authModal) authModal.classList.add('hidden');
+            if (otpModal) {
+                otpModal.classList.remove('hidden');
+                // Focus first OTP box
+                const firstBox = otpInputGroup.querySelector('input');
+                if (firstBox) firstBox.focus();
+            }
+        } else {
+            alert(data.error || 'Failed to dispatch passcode.');
+        }
+    } catch (err) {
+        console.error('Request OTP request exception:', err);
+        alert('Network or server connection error.');
+    } finally {
+        requestOtpBtn.disabled = false;
+        requestOtpBtn.textContent = 'Send Code';
+    }
+}
 
-        // 3. Submit behind-the-scenes to Google Forms
-        const googleFormUrl = (typeof CONFIG !== 'undefined' && CONFIG.urls) ? CONFIG.urls.googleFormUrl : null;
-        if (googleFormUrl) {
-            fetch(googleFormUrl, {
-                method: 'POST',
-                mode: 'no-cors',
-                body: formData
-            }).catch(() => {});
+// Verify OTP Flow
+async function handleVerifyOtp() {
+    const email = authEmail.value.trim();
+    const boxes = otpInputGroup.querySelectorAll('input');
+    let otp = '';
+    boxes.forEach(box => {
+        otp += box.value.trim();
+    });
+
+    if (otp.length !== 6) {
+        otpErrorText.textContent = 'Please enter all 6 digits.';
+        otpErrorText.style.display = 'block';
+        return;
+    }
+
+    verifyOtpBtn.disabled = true;
+    verifyOtpBtn.textContent = 'Verifying...';
+    otpErrorText.style.display = 'none';
+
+    try {
+        const rawPayload = `${email}:${otp}`;
+        const payload = obfuscate(rawPayload);
+
+        const response = await fetch('/api/verify-otp', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ payload })
+        });
+        
+        const data = await response.json();
+        
+        if (response.ok) {
+            // Save authentication details in LocalStorage
+            localStorage.setItem('techquizai_auth_token', data.token);
+            localStorage.setItem('techquizai_auth_user', JSON.stringify(data.user));
+
+            // Merge authenticated profile metadata into our existing state engine
+            // If the user's name is not yet set or is generic, set it to the username prefix of the email
+            const currentSavedName = localStorage.getItem(userNameKey);
+            if (!currentSavedName || currentSavedName === 'Learner') {
+                const calculatedName = email.split('@')[0];
+                localStorage.setItem(userNameKey, calculatedName);
+            }
+
+            if (otpModal) otpModal.classList.add('hidden');
+            
+            // Clear input fields
+            boxes.forEach(box => { box.value = ''; });
+            authEmail.value = '';
+
+            updateAuthUI();
+        } else {
+            otpErrorText.textContent = data.error || 'Verification failed.';
+            otpErrorText.style.display = 'block';
+        }
+    } catch (err) {
+        console.error('Verify OTP request exception:', err);
+        otpErrorText.textContent = 'Network or server connection error.';
+        otpErrorText.style.display = 'block';
+    } finally {
+        verifyOtpBtn.disabled = false;
+        verifyOtpBtn.textContent = 'Verify & Login';
+    }
+}
+
+// Sign Out
+function handleSignOut() {
+    localStorage.removeItem('techquizai_auth_token');
+    localStorage.removeItem('techquizai_auth_user');
+    // We retain techquizai_user_name or quiz progress so we don't break existing data model stats,
+    // but the session is invalidated.
+    updateAuthUI();
+}
+
+// Account Deletion
+async function handleDeleteAccount() {
+    const confirmDelete = confirm('Are you sure you want to permanently delete your account? This will hard-delete your user record immediately and wipe all session states.');
+    if (!confirmDelete) return;
+
+    const token = localStorage.getItem('techquizai_auth_token');
+    const userJson = localStorage.getItem('techquizai_auth_user');
+    if (!token || !userJson) return;
+
+    try {
+        const user = JSON.parse(userJson);
+        const payload = obfuscate(user.email);
+
+        deleteAccountBtn.disabled = true;
+        deleteAccountBtn.textContent = 'Deleting...';
+
+        const response = await fetch('/api/delete-account', {
+            method: 'POST',
+            headers: { 
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify({ payload })
+        });
+        
+        const data = await response.json();
+        
+        if (response.ok) {
+            alert('Your account profile has been hard deleted successfully.');
+            // Wipe session and name states
+            localStorage.removeItem('techquizai_auth_token');
+            localStorage.removeItem('techquizai_auth_user');
+            localStorage.removeItem(userNameKey);
+            
+            if (profileModal) profileModal.classList.add('hidden');
+            updateAuthUI();
+        } else {
+            alert(data.error || 'Failed to complete deletion.');
+        }
+    } catch (err) {
+        console.error('Delete account request exception:', err);
+        alert('Server connection error. Failed to delete account.');
+    } finally {
+        deleteAccountBtn.disabled = false;
+        deleteAccountBtn.textContent = 'Delete Account';
+    }
+}
+
+// Open profile details modal
+function openProfileModal() {
+    const userJson = localStorage.getItem('techquizai_auth_user');
+    if (!userJson) return;
+    try {
+        const user = JSON.parse(userJson);
+        profileEmailVal.textContent = user.email;
+        profileStatusVal.textContent = user.status || 'REPEAT';
+        profileLoginVal.textContent = user.last_login_at ? new Date(user.last_login_at).toLocaleString() : 'N/A';
+        
+        if (profileModal) profileModal.classList.remove('hidden');
+    } catch (e) {
+        console.error('Profile info display error:', e);
+    }
+}
+
+// Setup input key listeners and auto-pasting inside the 6 OTP input boxes
+function setupOtpInputs() {
+    const boxes = otpInputGroup.querySelectorAll('input');
+    
+    boxes.forEach((box, index) => {
+        // Automatically focus next box when digit is typed
+        box.addEventListener('input', (e) => {
+            const val = box.value;
+            if (val.length === 1 && index < boxes.length - 1) {
+                boxes[index + 1].focus();
+            }
+        });
+
+        // Backspace goes to previous box
+        box.addEventListener('keydown', (e) => {
+            if (e.key === 'Backspace' && box.value.length === 0 && index > 0) {
+                boxes[index - 1].focus();
+            }
+        });
+
+        // Add auto-paste handler on all boxes (with click first-box recognition support)
+        box.addEventListener('paste', (e) => {
+            e.preventDefault();
+            const text = (e.clipboardData || window.clipboardData).getData('text').trim();
+            if (/^\d{6}$/.test(text)) {
+                // Populate all boxes starting from the first
+                for (let i = 0; i < 6; i++) {
+                    boxes[i].value = text[i];
+                }
+                // Focus the last input box
+                boxes[5].focus();
+            }
+        });
+    });
+}
+
+// Attach event handlers on page load
+document.addEventListener('DOMContentLoaded', () => {
+    updateAuthUI();
+    setupOtpInputs();
+
+    if (cancelAuthBtn) cancelAuthBtn.addEventListener('click', () => {
+        if (authModal) authModal.classList.add('hidden');
+    });
+
+    if (requestOtpBtn) requestOtpBtn.addEventListener('click', handleRequestOtp);
+
+    if (cancelOtpBtn) cancelOtpBtn.addEventListener('click', () => {
+        if (otpModal) otpModal.classList.add('hidden');
+        if (authModal) authModal.classList.remove('hidden');
+    });
+
+    if (verifyOtpBtn) verifyOtpBtn.addEventListener('click', handleVerifyOtp);
+
+    if (closeProfileBtn) closeProfileBtn.addEventListener('click', () => {
+        if (profileModal) profileModal.classList.add('hidden');
+    });
+
+    if (deleteAccountBtn) deleteAccountBtn.addEventListener('click', handleDeleteAccount);
+
+    // Escape listener dismisses auth modals
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            if (authModal && !authModal.classList.contains('hidden')) authModal.classList.add('hidden');
+            if (otpModal && !otpModal.classList.contains('hidden')) otpModal.classList.add('hidden');
+            if (profileModal && !profileModal.classList.contains('hidden')) profileModal.classList.add('hidden');
+            if (contactModal && !contactModal.classList.contains('hidden')) contactModal.classList.add('hidden');
+        }
+    });
+});
+
+// Contact Us Modal Logic with Email Verification & Form Handling
+const contactUsBtn = document.getElementById('contactUsBtn');
+const contactModal = document.getElementById('contactModal');
+const contactForm = document.getElementById('contactForm');
+const contactEmail = document.getElementById('contactEmail');
+const cancelContactBtn = document.getElementById('cancelContactBtn');
+const contactSuccess = document.getElementById('contactSuccess');
+const closeContactSuccessBtn = document.getElementById('closeContactSuccessBtn');
+
+// Standard RFC 5322 email validation regex helper
+function isValidEmail(emailStr) {
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    return emailRegex.test(emailStr);
+}
+
+if (contactUsBtn) {
+    contactUsBtn.addEventListener('click', () => {
+        if (contactForm) {
+            contactForm.reset();
+            contactForm.style.display = 'block';
+            contactForm.classList.remove('hidden');
+        }
+        if (contactSuccess) {
+            contactSuccess.style.display = 'none';
+            contactSuccess.classList.add('hidden');
+        }
+        if (contactModal) contactModal.classList.remove('hidden');
+    });
+}
+
+if (cancelContactBtn && contactModal) {
+    cancelContactBtn.addEventListener('click', () => {
+        contactModal.classList.add('hidden');
+    });
+}
+
+if (closeContactSuccessBtn && contactModal) {
+    closeContactSuccessBtn.addEventListener('click', () => {
+        contactModal.classList.add('hidden');
+    });
+}
+
+if (contactForm) {
+    contactForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const emailVal = contactEmail.value.trim();
+
+        // Perform strict email format verification
+        if (!isValidEmail(emailVal)) {
+            alert('Please enter a valid email address (e.g. you@example.com).');
+            contactEmail.focus();
+            return;
+        }
+
+        // Hide form fields and display clean success message
+        contactForm.style.display = 'none';
+        contactForm.classList.add('hidden');
+        if (contactSuccess) {
+            contactSuccess.style.display = 'block';
+            contactSuccess.classList.remove('hidden');
         }
     });
 }
+
+// Add format check inside Auth sign-in request-otp input trigger as well
+if (requestOtpBtn) {
+    // Override click event to check format before sending
+    requestOtpBtn.removeEventListener('click', handleRequestOtp);
+    requestOtpBtn.addEventListener('click', () => {
+        const authEmailVal = authEmail.value.trim();
+        if (!isValidEmail(authEmailVal)) {
+            alert('Please enter a valid email address.');
+            authEmail.focus();
+            return;
+        }
+        handleRequestOtp();
+    });
+}
+
+

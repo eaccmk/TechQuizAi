@@ -211,6 +211,13 @@ async function initQuiz() {
             };
             
             startQuizBtn.addEventListener('click', startQuizHandler);
+            const closeNameModalBtn = document.getElementById('closeNameModalBtn');
+            if (closeNameModalBtn) {
+                closeNameModalBtn.addEventListener('click', () => {
+                    nameModal.classList.add('hidden');
+                    window.location.href = 'index.html';
+                });
+            }
             if (userNameInput) {
                 userNameInput.addEventListener('keydown', (e) => {
                     if (e.key === 'Enter') startQuizHandler();

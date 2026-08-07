@@ -4,24 +4,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Master Tech Concepts with free certifications. Explore interactive quizzes covering AI, MCP, LLM training, Cloud Computing basics, fundamentals, and knowledge to boost your career.">
-    <meta name="keywords" content="free, certifications, AI, MCP, LLM, training, concepts, basics, fundamentals, learn, knowledge, cloud computing, data science, tech quizzes">
+    <meta name="description"
+        content="Master Tech Concepts with free certifications. Explore interactive quizzes covering AI, MCP, LLM training, Cloud Computing basics, fundamentals, and knowledge to boost your career.">
+    <meta name="keywords"
+        content="free, certifications, AI, MCP, LLM, training, concepts, basics, fundamentals, learn, knowledge, cloud computing, data science, tech quizzes">
     <title>TechQuizAi - Free Certifications & Training in AI, MCP, LLM & Cloud Basics</title>
     <meta name="robots" content="index, follow">
     <meta name="theme-color" content="#7c3aed">
-    
+
     <!-- Open Graph / Social Sharing -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://techquizai.netlify.app/">
     <meta property="og:title" content="TechQuizAi - Free Certifications & Training in AI, MCP, LLM & Cloud Basics">
-    <meta property="og:description" content="Master Tech Concepts with free certifications. Explore interactive quizzes covering AI, MCP, LLM training, Cloud Computing basics, fundamentals, and knowledge to boost your career.">
+    <meta property="og:description"
+        content="Master Tech Concepts with free certifications. Explore interactive quizzes covering AI, MCP, LLM training, Cloud Computing basics, fundamentals, and knowledge to boost your career.">
     <meta property="og:image" content="https://techquizai.netlify.app/assets/favicon.png">
-    
+
     <!-- Twitter Meta Tags -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:url" content="https://techquizai.netlify.app/">
     <meta name="twitter:title" content="TechQuizAi - Free Certifications & Training in AI, MCP, LLM & Cloud Basics">
-    <meta name="twitter:description" content="Master Tech Concepts with free certifications. Explore interactive quizzes covering AI, MCP, LLM training, Cloud Computing basics, fundamentals, and knowledge to boost your career.">
+    <meta name="twitter:description"
+        content="Master Tech Concepts with free certifications. Explore interactive quizzes covering AI, MCP, LLM training, Cloud Computing basics, fundamentals, and knowledge to boost your career.">
     <meta name="twitter:image" content="https://techquizai.netlify.app/assets/favicon.png">
 
     <link rel="canonical" href="https://techquizai.netlify.app/">
@@ -40,9 +44,10 @@
     <!-- Header -->
     <header class="header" role="banner">
         <div class="header-container">
-            <a href="index.html" class="logo" id="headerLogo" aria-label="TechQuizAi Home">
+            <a href="index.html" class="logo" id="headerLogo" aria-label="TechQuizAi (v3) Home">
                 <span class="logo-icon" id="logoIcon" aria-hidden="true">☁️</span>
-                <span class="logo-text" id="logoText">TechQuizAi</span>
+                <span class="logo-text" id="logoText">TechQuizAi <span
+                        style="font-size: 13px; font-weight: 500; opacity: 0.8; color: inherit; vertical-align: middle;">(v3)</span></span>
             </a>
 
             <div class="search-bar" role="search">
@@ -54,7 +59,9 @@
 
             <div class="header-actions">
                 <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">🌙</button>
-                <button class="btn-signup" id="signUpBtn">Sign Up - Free!</button>
+                <div id="authHeaderContainer">
+                    <button class="btn-signup" id="signUpBtn">Sign In</button>
+                </div>
             </div>
         </div>
     </header>
@@ -62,7 +69,7 @@
     <!-- Hero Section -->
     <section class="hero" role="region" aria-label="Introduction">
         <h1 id="heroTitle">Master Tech Concepts, One Quiz at a Time</h1>
-        <p id="heroSubtitle">Interactive quizzes in Cloud Computing, AI/ML, and Data Science designed for Developers, AI Engineers, QA/SDETs, DevRels, and Data Scientists.</p>
+        <p id="heroSubtitle">Interactive quizzes designed for developers. Master concepts and earn certificates.</p>
     </section>
 
     <!-- Main Quiz Catalog Container -->
@@ -72,51 +79,144 @@
         </div>
     </main>
 
-    <!-- Sign Up / Contact Modal (Netlify Form Compatible) -->
-    <div class="modal-overlay hidden" id="signupModal" role="dialog" aria-modal="true" aria-labelledby="signupTitle">
+    <!-- Passwordless Authentication Sign-In / Request OTP Modal -->
+    <div class="modal-overlay hidden" id="authModal" role="dialog" aria-modal="true" aria-labelledby="authTitle">
         <div class="modal-card">
-            <form name="signup" method="POST" data-netlify="true" netlify-honeypot="bot-field" id="signupForm">
-                <div class="modal-icon" aria-hidden="true">🚀</div>
-                <h2 id="signupTitle">Join TechQuizAi Free</h2>
-                <p style="color: var(--text-secondary); font-size: 14px; margin-bottom: 20px;">Sign-up to get updates
-                    about new quizzes in your inbox!</p>
-
-                <input type="hidden" name="form-name" value="signup" />
-                <p class="hidden" style="display:none;">
-                    <label>Don’t fill this out if you’re human: <input name="bot-field" /></label>
-                </p>
-
-                <div class="form-field">
-                    <label for="signupName">Full Name</label>
-                    <input type="text" id="signupName" name="entry.198446647" placeholder="e.g. Jane Doe" required
-                        autocomplete="name">
-                </div>
-
-                <div class="form-field">
-                    <label for="signupEmail">Email Address</label>
-                    <input type="email" id="signupEmail" name="entry.1813684147" placeholder="jane@example.com" required
-                        autocomplete="email">
-                </div>
-
-                <div class="modal-actions">
-                    <button type="button" class="btn-modal btn-cancel" id="cancelSignupBtn">Cancel</button>
-                    <button type="submit" class="btn-modal btn-confirm">Sign Up Free</button>
-                </div>
-            </form>
-
-            <div class="signup-success hidden" id="signupSuccess" style="display: none;">
-                <div class="modal-icon" aria-hidden="true" style="font-size: 48px; margin-bottom: 16px;">🎉</div>
-                <p
-                    style="font-size: 16px; font-weight: 600; color: var(--text-primary); margin-bottom: 24px; line-height: 1.5;">
-                    Thank you for your interest in TechQuizAi! Your response has been submitted successfully.</p>
-                <button type="button" class="btn-modal btn-confirm" id="closeSuccessBtn">Got it!</button>
+            <div class="modal-icon" aria-hidden="true">🔑</div>
+            <h2 id="authTitle">Sign In or Sign Up</h2>
+            <p style="color: var(--text-secondary); font-size: 14px; margin-bottom: 20px;">
+                Enter your email address to receive a secure, OTP (One Time Code) to login.
+            </p>
+            <div class="form-field">
+                <label for="authEmail">Email Address</label>
+                <input type="email" id="authEmail" placeholder="you@example.com" required autocomplete="email">
+            </div>
+            <div class="modal-actions">
+                <button type="button" class="btn-modal btn-cancel" id="cancelAuthBtn">Cancel</button>
+                <button type="button" class="btn-modal btn-confirm" id="requestOtpBtn">Send Code</button>
             </div>
         </div>
     </div>
 
+    <!-- OTP Code Verification Modal -->
+    <div class="modal-overlay hidden" id="otpModal" role="dialog" aria-modal="true" aria-labelledby="otpTitle">
+        <div class="modal-card">
+            <div class="modal-icon" aria-hidden="true">✉️</div>
+            <h2 id="otpTitle">Enter Verification Code</h2>
+            <p style="color: var(--text-secondary); font-size: 14px; margin-bottom: 20px;">
+                We sent a 6-digit passcode to <span id="sentOtpEmailHighlight"
+                    style="font-weight: 600; color: var(--text-primary);">your email</span>.
+            </p>
+
+            <!-- Accessible 6-digit box layout -->
+            <div class="otp-input-group" id="otpInputGroup">
+                <input type="text" class="otp-box" maxlength="1" pattern="[0-9]" inputmode="numeric"
+                    aria-label="Digit 1" required>
+                <input type="text" class="otp-box" maxlength="1" pattern="[0-9]" inputmode="numeric"
+                    aria-label="Digit 2" required>
+                <input type="text" class="otp-box" maxlength="1" pattern="[0-9]" inputmode="numeric"
+                    aria-label="Digit 3" required>
+                <input type="text" class="otp-box" maxlength="1" pattern="[0-9]" inputmode="numeric"
+                    aria-label="Digit 4" required>
+                <input type="text" class="otp-box" maxlength="1" pattern="[0-9]" inputmode="numeric"
+                    aria-label="Digit 5" required>
+                <input type="text" class="otp-box" maxlength="1" pattern="[0-9]" inputmode="numeric"
+                    aria-label="Digit 6" required>
+            </div>
+
+            <div style="margin-top: 10px; margin-bottom: 20px;">
+                <p id="otpErrorText" style="color: #ef4444; font-size: 13px; display: none; font-weight: 500;"></p>
+            </div>
+
+            <div class="modal-actions">
+                <button type="button" class="btn-modal btn-cancel" id="cancelOtpBtn">Back</button>
+                <button type="button" class="btn-modal btn-confirm" id="verifyOtpBtn">Verify & Login</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Authenticated User Profile Modal -->
+    <div class="modal-overlay hidden" id="profileModal" role="dialog" aria-modal="true" aria-labelledby="profileTitle">
+        <div class="modal-card">
+            <div class="modal-icon" aria-hidden="true">👤</div>
+            <h2 id="profileTitle">User Account Profile</h2>
+            <div
+                style="text-align: left; margin: 20px 0; background: var(--bg-primary); padding: 16px; border-radius: 12px; border: 1px solid var(--border);">
+                <p style="margin-bottom: 8px; font-size: 13px;"><strong>Email:</strong> <span id="profileEmailVal"
+                        style="color: var(--text-primary);"></span></p>
+                <p style="margin-bottom: 8px; font-size: 13px;"><strong>Status:</strong> <span id="profileStatusVal"
+                        style="color: var(--success); font-weight: bold;"></span></p>
+                <p style="margin-bottom: 0; font-size: 13px;"><strong>Last Login:</strong> <span id="profileLoginVal"
+                        style="color: var(--text-secondary);"></span></p>
+            </div>
+
+            <p
+                style="color: var(--text-secondary); font-size: 13px; line-height: 1.4; text-align: left; margin-bottom: 24px;">
+                <i class="fa-solid fa-circle-info" style="color: var(--accent);"></i> Ready to delete your account? This
+                will hard-delete your user record immediately and wipe all local states.
+            </p>
+
+            <div class="modal-actions">
+                <button type="button" class="btn-modal btn-cancel" id="closeProfileBtn">Close</button>
+                <button type="button" class="btn-modal btn-confirm btn-danger-modal" id="deleteAccountBtn">Delete
+                    Account</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact Us Modal -->
+    <div class="modal-overlay hidden" id="contactModal" role="dialog" aria-modal="true" aria-labelledby="contactTitle">
+        <div class="modal-card">
+            <form id="contactForm">
+                <div class="modal-icon" aria-hidden="true">📩</div>
+                <h2 id="contactTitle">Contact TechQuizAi</h2>
+                <p style="color: var(--text-secondary); font-size: 14px; margin-bottom: 20px;">We'd love to hear from
+                    you!</p>
+
+                <div class="form-field">
+                    <label for="contactEmail">Email Address</label>
+                    <input type="email" id="contactEmail" required placeholder="you@example.com" autocomplete="email">
+                </div>
+
+                <div class="form-field">
+                    <label for="contactReason">Reason for Contact</label>
+                    <select id="contactReason" required
+                        style="width: 100%; padding: 12px 16px; border: 1px solid var(--border); border-radius: 10px; background: var(--bg-primary); color: var(--text-primary); font-size: 15px;">
+                        <option value="feedback">Feedback / Idea</option>
+                        <option value="bug">Report a Bug</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+
+                <div class="form-field">
+                    <label for="contactMessage">Message (Optional)</label>
+                    <textarea id="contactMessage" placeholder="Your message details..."
+                        style="width: 100%; min-height: 80px; padding: 12px 16px; border: 1px solid var(--border); border-radius: 10px; background: var(--bg-primary); color: var(--text-primary); font-size: 15px; resize: vertical; font-family: inherit;"></textarea>
+                </div>
+
+                <div class="modal-actions">
+                    <button type="button" class="btn-modal btn-cancel" id="cancelContactBtn">Cancel</button>
+                    <button type="submit" class="btn-modal btn-confirm">Submit</button>
+                </div>
+            </form>
+
+            <div class="signup-success hidden" id="contactSuccess" style="display: none;">
+                <div class="modal-icon" aria-hidden="true" style="font-size: 48px; margin-bottom: 16px;">🎉</div>
+                <p
+                    style="font-size: 16px; font-weight: 600; color: var(--text-primary); margin-bottom: 24px; line-height: 1.5;">
+                    Thank you! Your response has been submitted successfully, we will be in touch soon.
+                </p>
+                <button type="button" class="btn-modal btn-confirm" id="closeContactSuccessBtn">Got it!</button>
+            </div>
+        </div>
+    </div>
+
+
+
     <!-- Name Input Modal -->
     <div class="modal-overlay hidden" id="nameModal" role="dialog" aria-modal="true" aria-labelledby="nameTitle">
         <div class="modal-card">
+            <button class="btn-close-modal" id="closeNameModalBtn" aria-label="Close modal" title="Close"><i class="fa-solid fa-xmark"></i></button>
             <div class="modal-icon" aria-hidden="true">📜</div>
             <h2 id="nameTitle">Personalize Your Certificate</h2>
             <p>Enter your full name as you would like it to see on your Certificate of Completion.</p>
@@ -148,15 +248,16 @@
         <div class="footer-container">
             <div class="footer-nav-links">
                 <a href="https://www.linkedin.com/in/millankaul" target="_blank" rel="noopener"
-                    aria-label="LinkedIn Profile"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
+                    aria-label="LinkedIn Profile"><i class="fa-brands fa-linkedin"></i> <span>LinkedIn</span></a>
                 <a href="https://github.com/eaccmk" target="_blank" rel="noopener" aria-label="GitHub Profile"><i
-                        class="fa-brands fa-github"></i> GitHub</a>
+                        class="fa-brands fa-github"></i> <span>GitHub</span></a>
                 <a href="https://qualitywithmillan.github.io/" target="_blank" rel="noopener"
-                    aria-label="Learn More Blog"><i class="fa-solid fa-book-open"></i> Learn More</a>
-                <a href="disclaimer.html"><i class="fa-solid fa-scale-balanced"></i> Terms & Disclaimer</a>
-                <a href="CODE_OF_CONDUCT.md" target="_blank" rel="noopener"><i class="fa-solid fa-handshake"></i> Code of Conduct</a>
-                <button class="btn-footer-link" id="contactUsBtn"><i class="fa-solid fa-envelope"></i> Contact
-                    Us</button>
+                    aria-label="Learn More Blog"><i class="fa-solid fa-book-open"></i> <span>Learn More</span></a>
+                <a href="disclaimer.html" aria-label="Terms and Disclaimer"><i class="fa-solid fa-scale-balanced"></i> <span>Terms & Disclaimer</span></a>
+                <a href="CODE_OF_CONDUCT.md" target="_blank" rel="noopener" aria-label="Code of Conduct"><i class="fa-solid fa-handshake"></i>
+                    <span>Code of Conduct</span></a>
+                <button class="btn-footer-link" id="contactUsBtn" aria-label="Contact Us"><i class="fa-solid fa-envelope"></i> <span>Contact
+                        Us</span></button>
             </div>
 
             <p class="footer-copyright" id="footerCopyright">
@@ -164,7 +265,9 @@
             </p>
 
             <p class="footer-disclaimer-note">
-                This site is powered by <a href="https://www.netlify.com" target="_blank" rel="noopener noreferrer">Netlify</a>. TechQuizAi is an open-source tool built to help users brush up skills. Not affiliated with AWS, Azure, GCP, or official vendor certifications.
+                This site is powered by <a href="https://www.netlify.com" target="_blank"
+                    rel="noopener noreferrer">Netlify</a>. TechQuizAi is an open-source tool built to help users brush
+                up skills. Not affiliated with AWS, Azure, GCP, or official vendor certifications.
             </p>
         </div>
     </footer>
