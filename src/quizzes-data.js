@@ -5,7 +5,7 @@ window.QUIZ_CATALOG = {
       "icon": "📊",
       "title": "Evaluation (Evals)",
       "subtitle": "Understand AI evaluation frameworks, LLM benchmarks, and scoring metrics",
-      "category": "Artificial Intelligence (AI) Foundations",
+      "category": "AI Foundations",
       "questions": 10,
       "completed": false,
       "available": false
@@ -15,7 +15,7 @@ window.QUIZ_CATALOG = {
       "icon": "🧠",
       "title": "LLM Fundamentals",
       "subtitle": "Learn Large Language Models, prompt engineering, and GenAI concepts",
-      "category": "Artificial Intelligence (AI) Foundations",
+      "category": "AI Foundations",
       "questions": 10,
       "completed": false,
       "available": false
@@ -25,7 +25,7 @@ window.QUIZ_CATALOG = {
       "icon": "🔌",
       "title": "MCP Fundamentals (v2)",
       "subtitle": "Master the Model Context Protocol, including the latest July 2026 v2 release",
-      "category": "Artificial Intelligence (AI) Foundations",
+      "category": "AI Foundations",
       "questions": 10,
       "completed": false,
       "available": true
@@ -119,6 +119,16 @@ window.QUIZ_CATALOG = {
       "questions": 10,
       "completed": false,
       "available": true
+    },
+    {
+      "id": "qa-playwright",
+      "icon": "🎭",
+      "title": "Playwright Testing Basics",
+      "subtitle": "Learn the fundamentals of Playwright for test automation",
+      "category": "QA / SDET",
+      "questions": 10,
+      "completed": false,
+      "available": true
     }
   ],
   "catalog": {
@@ -127,7 +137,7 @@ window.QUIZ_CATALOG = {
       "icon": "📊",
       "title": "Evaluation (Evals)",
       "subtitle": "Understand AI evaluation frameworks, LLM benchmarks, and scoring metrics",
-      "category": "Artificial Intelligence (AI) Foundations",
+      "category": "AI Foundations",
       "skills": [
         "AI",
         "ML",
@@ -143,7 +153,7 @@ window.QUIZ_CATALOG = {
       "icon": "🧠",
       "title": "LLM Fundamentals",
       "subtitle": "Learn Large Language Models, prompt engineering, and GenAI concepts",
-      "category": "Artificial Intelligence (AI) Foundations",
+      "category": "AI Foundations",
       "skills": [
         "AI",
         "LLM",
@@ -159,7 +169,7 @@ window.QUIZ_CATALOG = {
       "icon": "🔌",
       "title": "MCP Fundamentals (v2)",
       "subtitle": "Master the Model Context Protocol, including the latest July 2026 v2 release",
-      "category": "Artificial Intelligence (AI) Foundations",
+      "category": "AI Foundations",
       "skills": [
         "MCP",
         "AI",
@@ -1016,6 +1026,161 @@ window.QUIZ_CATALOG = {
           "answerHash": "6859e7b3318a3ee764967db6b1591621939c6b297de0afd19efcfb9bba25fffd",
           "encodedAnswer": "UHViL1N1Yg==",
           "hint": "It's an asynchronous messaging service designed for streaming analytics and data integration pipelines."
+        }
+      ]
+    },
+    "qa-playwright": {
+      "id": "qa-playwright",
+      "icon": "🎭",
+      "title": "Playwright Testing Basics",
+      "subtitle": "Learn the fundamentals of Playwright for test automation",
+      "category": "QA / SDET",
+      "skills": [
+        "Automation Testing using Playwright"
+      ],
+      "questionsCount": 10,
+      "completed": false,
+      "available": true,
+      "questions": [
+        {
+          "id": 1,
+          "difficulty": "easy",
+          "text": "What is Playwright?",
+          "options": [
+            "A framework for Web Testing and Automation",
+            "A billing boundary for cloud providers",
+            "A design tool for web user interfaces",
+            "A runtime environment for Python only"
+          ],
+          "answerHash": "ead7a8763f5d5b85aab4b196e6a4059b762cf8b94b47179912fe0fc333e1a116",
+          "encodedAnswer": "QSBmcmFtZXdvcmsgZm9yIFdlYiBUZXN0aW5nIGFuZCBBdXRvbWF0aW9u",
+          "hint": "It allows testing Chromium, Firefox, and WebKit with a single API."
+        },
+        {
+          "id": 2,
+          "difficulty": "easy",
+          "text": "Which command is used to install Playwright in a Node.js project?",
+          "options": [
+            "npm init playwright@latest",
+            "npm install playwright-global",
+            "npx install-playwright",
+            "npm create playwright-app"
+          ],
+          "answerHash": "c7402bb94a6f0b00113ac08f8a6f42ea8780969b31b2836def726e763eeb48b0",
+          "encodedAnswer": "bnBtIGluaXQgcGxheXdyaWdodEBsYXRlc3Q=",
+          "hint": "It initializes a new Playwright project, installs browsers, and sets up configuration."
+        },
+        {
+          "id": 3,
+          "difficulty": "easy",
+          "text": "Which browsers are supported by Playwright out-of-the-box?",
+          "options": [
+            "Chromium, Firefox, and WebKit",
+            "Chromium and Edge only",
+            "Chrome, Safari, and Internet Explorer",
+            "Chromium, Firefox, and Opera"
+          ],
+          "answerHash": "a61d26240662d129e90aa9dd049ffa05c0d0427ea2de21aaa405eea4b4f98cef",
+          "encodedAnswer": "Q2hyb21pdW0sIEZpcmVmb3gsIGFuZCBXZWJLaXQ=",
+          "hint": "It includes WebKit (the engine behind Safari) and Chromium (which powers Chrome and Edge)."
+        },
+        {
+          "id": 4,
+          "difficulty": "easy",
+          "text": "How do you run Playwright tests in UI Mode?",
+          "options": [
+            "npx playwright test --ui",
+            "npx playwright test --headed",
+            "npx playwright show-report",
+            "npx playwright open-ui"
+          ],
+          "answerHash": "5b6ed5330db52ea75315f695687f02c73e5461468556b672de25d97356318462",
+          "encodedAnswer": "bnB4IHBsYXl3cmlnaHQgdGVzdCAtLXVp",
+          "hint": "The CLI option for launching the interactive UI mode is --ui."
+        },
+        {
+          "id": 5,
+          "difficulty": "medium",
+          "text": "What is the default mode when running Playwright tests from the command line?",
+          "options": [
+            "Headless mode (no visible browser window)",
+            "Headed mode (visible browser window)",
+            "UI mode",
+            "Debug mode"
+          ],
+          "answerHash": "a5374defb6ce9d7ba9ccd477d3e9dcea21225ae5e3cf5b7d9998915dca9c59d4",
+          "encodedAnswer": "SGVhZGxlc3MgbW9kZSAobm8gdmlzaWJsZSBicm93c2VyIHdpbmRvdyk=",
+          "hint": "Playwright runs tests without a GUI by default to optimize speed and resource usage."
+        },
+        {
+          "id": 6,
+          "difficulty": "medium",
+          "text": "What is the command to generate tests by recording user actions?",
+          "options": [
+            "npx playwright record",
+            "npx playwright generate",
+            "npx playwright test --record",
+            "npx playwright codegen"
+          ],
+          "answerHash": "547cfbbdf5dbc8e8bd77540f251f6e10f83e52dfc047e86aa2c6f268e4455acc",
+          "encodedAnswer": "bnB4IHBsYXl3cmlnaHQgY29kZWdlbg==",
+          "hint": "This command opens a browser and the Playwright Inspector to generate code as you interact with the page."
+        },
+        {
+          "id": 7,
+          "difficulty": "medium",
+          "text": "Which three Test Agents does Playwright offer out of the box for automation tasks?",
+          "options": [
+            "Runner, Inspector, and Reporter",
+            "Crawler, Extractor, and Analyzer",
+            "Planner, Generator, and Healer",
+            "Compiler, Builder, and Deployer"
+          ],
+          "answerHash": "ab8eca77431d37a1bbe4b355551e33d480575e02ce45ed6ee44f05658cfdbe9a",
+          "encodedAnswer": "UGxhbm5lciwgR2VuZXJhdG9yLCBhbmQgSGVhbGVy",
+          "hint": "These built-in agents plan workflows, generate code, and self-heal test scripts."
+        },
+        {
+          "id": 8,
+          "difficulty": "hard",
+          "text": "Where does Playwright save the test execution traces for debugging?",
+          "options": [
+            "In the trace viewer zip files (trace.zip)",
+            "In a local playwright.log file",
+            "In a video file (.mp4) only",
+            "In the system temporary directory"
+          ],
+          "answerHash": "1809bddb69eecb25e839945b9f7202088a222135b1b74b839136f56c31dd5633",
+          "encodedAnswer": "SW4gdGhlIHRyYWNlIHZpZXdlciB6aXAgZmlsZXMgKHRyYWNlLnppcCk=",
+          "hint": "These traces can be loaded in the Playwright Trace Viewer to step through actions, screenshots, and logs."
+        },
+        {
+          "id": 9,
+          "difficulty": "hard",
+          "text": "In Playwright, what is a \"Locator\"?",
+          "options": [
+            "A view that represents a way to find element(s) on the page at any moment",
+            "A function that starts the browser session",
+            "A configuration setting for geographic location testing",
+            "A command-line tool for installing browsers"
+          ],
+          "answerHash": "72421e6d0e96b97dcdfc15eff18ed3fafee699ec2831474f1dc6f15521393c2c",
+          "encodedAnswer": "QSB2aWV3IHRoYXQgcmVwcmVzZW50cyBhIHdheSB0byBmaW5kIGVsZW1lbnQocykgb24gdGhlIHBhZ2UgYXQgYW55IG1vbWVudA==",
+          "hint": "Locators are the central piece of Playwright's auto-waiting and retry-ability."
+        },
+        {
+          "id": 10,
+          "difficulty": "hard",
+          "text": "What are test fixtures in Playwright?",
+          "options": [
+            "External plugins used to run tests on mobile emulators only.",
+            "Isolated, pre-configured environments established for each test to provide everything it needs and clean up after itself.",
+            "Global configuration options defined in playwright.config.js to control timeout settings.",
+            "Utility classes used to generate HTML test reports automatically."
+          ],
+          "answerHash": "0ddc742d37e423a56b7d2bbd50affeb88f6fb868756bd37e1ba3f9079bef5562",
+          "encodedAnswer": "SXNvbGF0ZWQsIHByZS1jb25maWd1cmVkIGVudmlyb25tZW50cyBlc3RhYmxpc2hlZCBmb3IgZWFjaCB0ZXN0IHRvIHByb3ZpZGUgZXZlcnl0aGluZyBpdCBuZWVkcyBhbmQgY2xlYW4gdXAgYWZ0ZXIgaXRzZWxmLg==",
+          "hint": "Playwright test fixtures are isolated, reusable, and lazily initialized based on what the test function requests."
         }
       ]
     }
