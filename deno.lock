@@ -11,7 +11,11 @@
   "workspace": {
     "packageJson": {
       "dependencies": [
-        "npm:netlify-cli@^23.13.5"
+        "npm:@sendgrid/mail@^8.1.6",
+        "npm:@supabase/supabase-js@^2.112.2",
+        "npm:jsonwebtoken@^9.0.3",
+        "npm:netlify-cli@^23.13.5",
+        "npm:resend@^6.18.1"
       ]
     }
   }

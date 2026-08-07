@@ -1,6 +1,7 @@
 [build]
   command = "npm run build"
   publish = "."
+  functions = "netlify/functions"
 
 [build.environment]
   SECRETS_SCAN_ENABLED = "false"
@@ -12,3 +13,9 @@
   [headers.values]
     X-Frame-Options = "DENY"
     X-Content-Type-Options = "nosniff"
+
+[[redirects]]
+  from = "/api/*"
+  to = "/.netlify/functions/:splat"
+  status = 200
+

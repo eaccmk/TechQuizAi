@@ -3,7 +3,7 @@ id: mcp-concepts
 title: MCP Fundamentals (v2)
 icon: 🔌
 subtitle: Master the Model Context Protocol, including the latest July 2026 v2 release
-category: Artificial Intelligence (AI) Foundations
+category: AI Foundations
 skills: MCP, AI, LLM tools
 available: true
 ---

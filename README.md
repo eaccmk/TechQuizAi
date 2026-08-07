@@ -11,6 +11,71 @@ TechQuizAi is a lightweight, scalable, Markdown-driven platform. Users take inte
 
 ---
 
+## 🔑 Passwordless Auth Setup & Configuration
+
+This project includes a secure, passwordless Email OTP (One-Time Password) system integrated with Supabase and Netlify Functions.
+
+### 1. Supabase Relational Database Schema Setup
+Log into your [Supabase Dashboard](https://supabase.com) and follow these steps to execute the SQL database structure:
+1. Navigate to **SQL Editor** from the left-hand navigation sidebar.
+2. Click **New Query**.
+3. Open [schema.sql](/src/schema.sql) from the repository, copy its contents, and paste it into the Supabase SQL editor.
+4. Click **Run**.
+5. *(Optional)* Enable `pg_cron` in database extensions if you plan to automate monthly audit log purges:
+   - Go to **Database** -> **Extensions** -> Search for `pg_cron` and enable it.
+   - Run the commented cron scheduling SQL statement at the bottom of `schema.sql` to execute the reset on the 1st of every month.
+
+---
+
+### 2. Configure Environment Variables in Netlify
+For a public repository, security is paramount. **Never commit secret keys to GitHub.** Follow this checklist to safely configure environment variables in the Netlify Dashboard:
+1. Log into your [Netlify account](https://app.netlify.com/) and select your site/project.
+2. Go to **Site settings** -> **Environment variables** (under **Build & deploy**).
+3. Click **Add a variable** -> **Add single variable** and insert the following:
+   - `SUPABASE_URL`: Your Supabase API endpoint (e.g. `https://[YOUR_PROJECT_ID].supabase.co`). Find your Project ID under *Project Settings -> General*.
+   - `SUPABASE_SERVICE_ROLE_KEY`: Your Supabase Service Role key. Under *Project Settings -> API Keys*, copy the `default` key under **Secret keys**.
+   - `JWT_SECRET`: A secure signing key. If using Netlify Identity, go to your Netlify Dashboard -> **Site Settings** -> **Identity** -> Scroll down to **Services** -> **Git Gateway** -> Copy the **JWT secret** shown there. Alternatively, if Netlify Identity is not fully set up yet, you can generate any secure random string (e.g., via `openssl rand -hex 32`) and paste it as the `JWT_SECRET`.
+   - `RESEND_API_KEY`: *(Optional)* Your Resend API key to deliver OTP passcodes.
+   - `SENDGRID_API_KEY`: *(Optional)* Your SendGrid/Twilio API key to deliver OTP passcodes.
+4. Click **Save**.
+
+*Note: For local development with Netlify CLI, create a local `.env` file in the root directory containing these keys. The `.gitignore` file will prevent it from being checked into your git repository.*
+
+---
+
+## 🧪 Testing & Verification Guide
+
+### 1. Automated Mock Verification
+To verify the core auth logic, hashing security, and JWT encoding verify that mock tests pass locally:
+```bash
+node test/test-auth.js
+```
+
+### 2. Local Manual Testing Flow
+1. Start your local Netlify dev server:
+   ```bash
+   npx netlify dev
+   ```
+2. Open the dev site (typically `http://localhost:8888`) in your web browser.
+3. Click **Sign In / Sign Up** in the header.
+4. Enter an email and click **Send Code**.
+5. Check your console terminal logs! Since you are running in local mock/development mode, the Netlify Functions will print your OTP passcode directly to the console:
+   ```
+   [DEV/MOCK] OTP for learner@techquizai.com is: 123456
+   ```
+6. Enter the 6 digits in the responsive verification modal. Try pasting a full 6-digit passcode by clicking in the first input box to confirm it auto-fills the remaining inputs.
+7. Upon verification, confirm that the header updates with your logged-in user profile badge. Open browser Developer Tools, go to **Application** -> **Local Storage** and verify that:
+   - `techquizai_auth_token` holds your valid JWT.
+   - `techquizai_auth_user` contains your profile JSON metadata.
+   - `techquizai_user_name` has successfully merged your email username prefix without corrupting prior quiz scores.
+8. Check the **Network** tab in Developer Tools. Inspect the requests to `/api/request-otp` and `/api/verify-otp` to verify that the payloads are obfuscated (Base64) rather than clear text.
+9. Log into your Supabase console:
+   - Under `users` table: Verify your status is `REPEAT`.
+   - Under `audit_logs` table: Verify entries with `OTP_REQUESTED` and `OTP_VERIFIED` actions are recorded.
+10. Click your user profile badge on the site header to open the profile details modal. Click **Delete Account** to trigger the compliant deletion flow, and verify that your record is hard-deleted from the `users` table while an anonymized retention log remains in `audit_logs` for exactly 30 days.
+
+---
+
 ## 🚀 Quick Setup & Installation
 
 ### Prerequisites
@@ -83,7 +148,8 @@ TechQuizAi/
 │   └── build-quizzes.js # Compiles quizzes/ into src/ JSON/JS bundles & cleans legacy root files
 ├── test/
 │   ├── test.js          # Automated test suite (npm test)
-│   └── test-cert.html   # Local certificate design preview tool
+│   ├── test-cert.html   # Local certificate design preview tool
+│   └── test-auth.js     # Auth mock verification tests
 ├── src/
 │   ├── config.js        # Central branding, site URLs, GA4 ID, storage keys
 │   ├── app.js           # Dashboard rendering, search bar, wheel picker, GA4 & cookie consent
